@@ -61,11 +61,9 @@ btnLogin.addEventListener('click', (e) => {
 
 btnAdd.addEventListener('click', async (e) => {
     const el = e.target
-
     const data = {
         less: 'sdfsdfsdf'
     }
-
 
     const respons = await fetch(`/api/${el.dataset.link}`, {
         method: 'POST',
