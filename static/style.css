@@ -1,0 +1,30 @@
+body{
+    height: 100vh;
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*justify-content: center;*/
+}
+.register{
+    max-width: 60%;
+
+}
+.register__input{
+    font-size: 18px;
+    display: flex;
+    height: 2rem;
+    /*background-color: #61dafb;*/
+}
+.register__input > input{
+    width: 80%;
+}
+.btn{
+    background-color: #b5285e;
+    padding: 4px;
+    /*font-size: 28px;*/
+    margin: 0 5px;
+    border: 1px solid black;
+    /*transition: all .4s ease-in-out ;*/
+    /*position: relative;*/
+}
+.
+
