@@ -1,10 +1,10 @@
 const {Router} = require('express')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const nodeMailer = require('nodemailer')
 const {check, validationResult} = require('express-validator')
 const User = require('../models/User')
 const GD = require('../../globalSetings')
-const nodeMailer = require('nodemailer')
 
 
 const route = Router()
@@ -13,11 +13,11 @@ const route = Router()
 route.post(
     '/register',
     [
-        check('login', 'Логин не подошел...').trim().rtrim().isLength({min: 4, max: 20}).escape().isAlphanumeric(),
-        check('email', 'mail govno').trim().isEmail().normalizeEmail().escape(),
-        check('password', 'pass call').trim().isLength({min: 6, max: 18}),
-        check('role', 'role not true').isBoolean(),
-        check('teacher', 'учитель не прошел валидацию').trim().rtrim().isAlphanumeric()
+        check('login', 'Логин не подошел...').trim().rtrim().isLength({min: 4, max: 20}).escape().isAlphanumeric().isEmpty(),
+        check('email', 'mail govno').trim().isEmail().normalizeEmail().escape().isEmpty(),
+        check('password', 'pass call').trim().isLength({min: 6, max: 18}).isEmpty(),
+        check('role', 'role not true').isBoolean().isEmpty(),
+        check('teacher', 'учитель не прошел валидацию').trim().rtrim().isAlphanumeric().isEmpty()
     ],
     async (req, res) => {
         try {
