@@ -4,7 +4,7 @@ const DB = require('./src/modules/connectDataBase')
 const GS = require('./globalSetings')
 
 const app = express()
-const PORT = process.env.PORT = GS.server.port
+const PORT = process.env.PORT || GS.server.port
 
 app.use(bodyParser.json())
 // app.enable('trust proxy')
