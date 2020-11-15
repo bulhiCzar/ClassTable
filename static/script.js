@@ -1,11 +1,13 @@
-const btnRegister = document.querySelector('.btn-register')
-const btnLogin = document.querySelector('.btn-login')
+const btnRegister = document.querySelectorAll('.btn-register')
+const btnLogin = document.querySelectorAll('.btn-login')
 const btnAdd = document.querySelector('.btn-add')
 
 
 const btns = document.querySelectorAll('.btn')
 const inputEmail = document.querySelector('#email')
 const inputLogin = document.querySelector('#login')
+const inputEmailF = document.querySelector('#emailF')
+const inputLoginF = document.querySelector('#loginF')
 const registerlogin = document.querySelector('.register__login')
 
 const login = 'b' + Date.now()
@@ -20,20 +22,26 @@ let token
 
 
 const click = async (e) => {
-    // console.log()
     const el = e.target
 
     const data = {
-        login: inputLogin.value,
-        email: inputEmail.value,
         password: '741236',
-        // role: true,
-        role: false,
-        teacher: 'bulhi',
         ip
     }
 
+    if (el.dataset.info === 'teacher'){
+        data.login = inputLogin.value
+        data.email = inputEmail.value
+        data.role = true
+    }else if(el.dataset.info === 'student'){
+        data.login = inputLoginF.value
+        data.email = inputEmailF.value
+        data.role = false
+        data.teacher = 'bulhi'
+    }
+
     console.log(data)
+
 
     const respons = await fetch(`/api/${el.dataset.link}`, {
         method: 'POST',
@@ -51,13 +59,18 @@ const click = async (e) => {
     console.log(res)
 }
 
+btnRegister.forEach((btn)=>{
+    btn.addEventListener('click', (e) => {click(e)})
+})
 
-btnRegister.addEventListener('click', (e) => {
-    click(e)
+
+btnLogin.forEach((btn)=>{
+    btn.addEventListener('click', (e) => {click(e)})
 })
-btnLogin.addEventListener('click', (e) => {
-    click(e)
-})
+
+// btnLogin.addEventListener('click', (e) => {
+//     click(e)
+// })
 
 btnAdd.addEventListener('click', async (e) => {
     const el = e.target

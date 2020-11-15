@@ -6,18 +6,12 @@ const user = new Schema({
     password: {type: String, required: true},
     role: {type: Boolean, default: false}, // true - teacher | false - student
     lessons: [{
-        student: String,
-        price: Number,
-        pay: Number,
-        check: Boolean,
-        date: Date,
-        currency: String
+        type: Types.ObjectId
     }],
     confirmationEmail: {type: Boolean, default: false},
     token: {type: String},
     sessions: [{
-        ty: Number,
-        ip: String
+        type: Object
     }],
     teacher: {type: String},
     students: [{

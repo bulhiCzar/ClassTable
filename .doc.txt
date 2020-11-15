@@ -1,0 +1,23 @@
+Авторизация
+/api/user
+/register  -  POST  - Принимает обязательные параметры: login, email, password, teacher: String, role: Boolean
+Регистрирует пользователя в бд и отправляет на его почту сообщение. И в течении 15 минут ее нужно подтвердить
+
+/login  -  POST - Принимает обязательные параметры: login, password: String
+Возвращает токен авторизации. В последующем посылать его в хедерах для авторизации пользователя
+Authorization: Bearer token
+
+/mail/:id  -  GET  -  Принимает  :id в качестве подтверждения проверки почти
+Возвращает Boolean
+
+
+/api/lesson
+/add  -  POST  -  добавление урока
+Принимает: student, teacher, topic, comment(options): String, price, date: Number
+data - дата проведения занятия
+topic - тема занятия
+comment - коментария к занятияю
+
+/all  -  GET  -  все уроки
+Возвращает массив со всеми уроками у пользователя
+

@@ -13,11 +13,11 @@ const route = Router()
 route.post(
     '/register',
     [
-        check('login', 'Логин не подошел...').trim().rtrim().isLength({min: 4, max: 20}).escape().isAlphanumeric().isEmpty(),
-        check('email', 'mail govno').trim().isEmail().normalizeEmail().escape().isEmpty(),
-        check('password', 'pass call').trim().isLength({min: 6, max: 18}).isEmpty(),
-        check('role', 'role not true').isBoolean().isEmpty(),
-        check('teacher', 'учитель не прошел валидацию').trim().rtrim().isAlphanumeric().isEmpty()
+        check('login', 'Логин не подошел...').trim().rtrim().isLength({min: 4, max: 20}).escape().isAlphanumeric(),
+        check('email', 'mail govno').trim().isEmail().normalizeEmail().escape(),
+        check('password', 'pass call').trim().isLength({min: 6, max: 18}),
+        check('role', 'role not true').isBoolean(),
+        check('teacher', 'учитель не прошел валидацию').trim().rtrim()
     ],
     async (req, res) => {
         try {
@@ -31,6 +31,7 @@ route.post(
                 return
             }
             const {login, email, password, role, teacher} = req.body
+            // console.log(login)
 
             const validateUserLogin = await User.findOne({login})
             const validateUserEmail = await User.findOne({email})
@@ -96,7 +97,7 @@ route.post(
 
             res.status(200).json({mas: 'аккаунт создан'})
         } catch (e) {
-            // console.log(e)
+            console.log(e)
             res.status(403).json({mas: 'что-то сломалось'})
         }
     }
@@ -174,7 +175,7 @@ route.get(
             condition.confirmationEmail = true
             await condition.save()
 
-            res.status(200).json({m: '', go: true})
+            res.status(200).json({m: '', next: true})
 
         } catch (e) {
             res.status(403).json({m: 'Ошибка какая-то, повторите позже'})
