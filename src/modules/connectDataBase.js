@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const GS = require('../../globalSetings')
+const GS = require('../../globalData')
 
 const DB = async ()=>{
     const connectInfo = {

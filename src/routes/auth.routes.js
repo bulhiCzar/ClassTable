@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken')
 const nodeMailer = require('nodemailer')
 const {check, validationResult} = require('express-validator')
 const User = require('../models/User')
-const GD = require('../../globalSetings')
+const GD = require('../../globalData')
 
 
 const route = Router()

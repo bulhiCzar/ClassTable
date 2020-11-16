@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken')
 const {check, validationResult} = require('express-validator')
 const User = require('../models/User')
 const Lesson = require('../models/Lesson')
-const GD = require('../../globalSetings')
+const GD = require('../../globalData')
 const auth = require('../middleware/auth.middleware')
 
 

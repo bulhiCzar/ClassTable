@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-const GD = require('../../globalSetings')
+const GD = require('../../globalData')
 
 module.exports = async (req, res, next)=>{
     try {

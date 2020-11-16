@@ -1,4 +1,4 @@
-const globalSetings = {
+const globalData = {
     //server
     server: {
         host: 'http://localhost:',
@@ -20,5 +20,5 @@ const globalSetings = {
 
 }
 
-module.exports = globalSetings
+module.exports = globalData
 

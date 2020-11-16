@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const DB = require('./src/modules/connectDataBase')
-const GS = require('./globalSetings')
+const GS = require('./globalData')
 
 const app = express()
 const PORT = process.env.PORT || GS.server.port
