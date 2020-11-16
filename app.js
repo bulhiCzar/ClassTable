@@ -8,6 +8,7 @@ const PORT = process.env.PORT || GS.server.port
 
 
 
+
 const allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*')
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')

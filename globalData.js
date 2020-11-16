@@ -17,6 +17,11 @@ const globalData = {
     JWT:{
         secretKey: 'bulhiKeySecret' // private key for token
     },
+    TYPE:{
+        success: 'success',
+        warning: 'warning',
+        error: 'error'
+    }
 
 }
 

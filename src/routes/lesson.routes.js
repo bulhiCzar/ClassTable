@@ -28,7 +28,7 @@ route.post(
             if (!validation.isEmpty()) {
                 return res.status(400).json({
                     message: 'данные говно',
-                    type: 'warning',
+                    type: GD.TYPE.warning,
                     values: validation.array()
                 })
             }
@@ -50,7 +50,7 @@ route.post(
             const teacherDB = await User.findOne({login: teacher})
             const studentDB = await User.findOne({login: student})
 
-            if (!(teacherDB || studentDB)){return res.status(401).json({m: 'преподаватель или студент не были найдены'})}
+            if (!(teacherDB || studentDB)){return res.status(401).json({m: 'преподаватель или студент не были найдены', type: GD.TYPE.warning})}
 
 
             teacherDB.lessons.push(lesson._id)
@@ -60,9 +60,9 @@ route.post(
             await teacherDB.save()
             await studentDB.save()
 
-            res.status(200).json({mas: 'Урок добавлен'})
+            res.status(200).json({m: 'Урок добавлен', type: GD.TYPE.success})
         } catch (e) {
-            res.status(403).json({mas: 'что-то сломалось'})
+            res.status(403).json({m: 'что-то сломалось', type: GD.TYPE.error,})
         }
     }
 )
@@ -74,8 +74,7 @@ route.get(
     async (req, res) => {
         try {
             let lessons = []
-            const {login} = req.user
-
+            const login = req.user.login
             const user = await User.findOne({login})
 
             for (let i = 0; user.lessons.length > i; i++){
@@ -83,46 +82,15 @@ route.get(
                 lessons.push(await Lesson.findOne({_id: id}))
             }
 
-            res.status(200).json({m: 'Данные выданы', lessons})
+            res.status(200).json({m: 'Данные выданы', type: GD.TYPE.success, lessons})
         } catch (e) {
-            res.status(403).json({m: 'Ошибка какая-то, повторите позже'})
+            res.status(403).json({m: 'Ошибка какая-то, повторите позже', type: GD.TYPE.error})
         }
     }
 )
 
 
-//
-// route.get(
-//     '/mail/:id',
-//     async (req, res) => {
-//         try {
-//             const id = req.params.id
-//
-//             const verify = await jwt.verify(id, GD.JWT.secretKey, (el) => {
-//                 return el
-//             })
-//
-//             if (verify) res.status(402).json({m: 'токен закочился...'})
-//
-//             const decode = jwt.decode(id)
-//
-//             const condition = await User.findOne({token: id, email: decode.email})
-//
-//             if (condition.token !== id) res.status(402).json({m: 'токен не равен...'})
-//             if (!condition) res.status(402).json({m: 'ничего не найшлось по этому токену...'})
-//
-//             condition.token = Date.now() + '-' + condition.token.slice(0, 4)
-//             condition.confirmationEmail = true
-//             await condition.save()
-//
-//
-//             res.status(200).json({id, decode, verify, condition})
-//
-//         } catch (e) {
-//             res.status(403).json({m: 'Ошибка какая-то, повторите позже', e})
-//         }
-//     }
-// )
+
 
 
 module.exports = route

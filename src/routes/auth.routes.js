@@ -24,19 +24,18 @@ route.post(
             const validation = validationResult(req)
             if (!validation.isEmpty()) {
                 res.status(400).json({
-                    message: 'данные говно',
-                    type: 'warning',
+                    m: 'данные говно',
+                    type: GD.TYPE.warning,
                     values: validation.array()
                 })
                 return
             }
             const {login, email, password, role, teacher} = req.body
-            // console.log(login)
 
             const validateUserLogin = await User.findOne({login})
             const validateUserEmail = await User.findOne({email})
             if (validateUserEmail || validateUserLogin) {
-                res.status(402).json({mas: 'Уже было зарегано'})
+                res.status(402).json({m: 'Уже было зарегано', type: GD.TYPE.warning})
                 return
             }
 
@@ -95,10 +94,10 @@ route.post(
 
             await user.save()
 
-            res.status(200).json({mas: 'аккаунт создан'})
+            res.status(200).json({m: 'аккаунт создан', type: GD.TYPE.success})
         } catch (e) {
             console.log(e)
-            res.status(403).json({mas: 'что-то сломалось'})
+            res.status(403).json({m: 'что-то сломалось', type: GD.TYPE.error})
         }
     }
 )
@@ -116,18 +115,18 @@ route.post(
 
             const condition = await User.findOne({login: loginClient})
             if (!condition) {
-                res.status(403).json({m: 'ничего не найдено'})
+                res.status(403).json({m: 'ничего не найдено', type: GD.TYPE.warning})
                 return
             }
 
             const equivalent = await bcrypt.compare(passwordClient, condition.password)
             if (!equivalent){
-                res.status(403).json({m: 'пароль не подошел'})
+                res.status(403).json({m: 'пароль не подошел', type: GD.TYPE.warning})
                 return
             }
 
             if (!condition.confirmationEmail){
-                res.status(403).json({m: 'ваша почта не подтверждена'})
+                res.status(403).json({m: 'ваша почта не подтверждена', type: GD.TYPE.warning})
                 return
             }
 
@@ -146,9 +145,9 @@ route.post(
 
             condition.save()
 
-            res.status(200).json({m: 'Успешный вход', tokenAuth})
+            res.status(200).json({m: 'Успешный вход', type: GD.TYPE.success, tokenAuth})
         } catch (e) {
-            res.status(403).json({m: 'Ошибка какая-то, повторите позже', e})
+            res.status(403).json({m: 'Ошибка какая-то, повторите позже', type: GD.TYPE.warning, e})
         }
     }
 )
@@ -158,28 +157,18 @@ route.get(
     async (req, res) => {
         try {
             const id = req.params.id
-            // const verify = await jwt.verify(id, GD.JWT.secretKey, (el) => {
-            //     return el
-            // })
-            // if (verify) { return res.status(402).json({m: 'токен закочился...'})}
-            // const decode = jwt.decode(id)
-            // console.log(id)
-
             const condition = await User.findOne({token: id})
 
-            if (condition.token !== id) res.status(402).json({m: 'токен не равен...'})
-            if (!condition) res.status(402).json({m: 'ничего не найшлось по этому токену...'})
+            if (condition.token !== id) res.status(402).json({m: 'токен не равен...', type: GD.TYPE.warning})
+            if (!condition) res.status(402).json({m: 'ничего не найшлось по этому токену...', type: GD.TYPE.warning})
 
-            // condition.token = Date.now() + '-' + condition.token.slice(0, 4)
             condition.token = undefined
             condition.confirmationEmail = true
             await condition.save()
 
-            res.status(200).json({m: '', next: true})
-
+            res.status(200).json({m: 'Почта подтверждена', type: GD.TYPE.success})
         } catch (e) {
-            res.status(403).json({m: 'Ошибка какая-то, повторите позже'})
-            // console.log(e)
+            res.status(403).json({m: 'Ошибка какая-то, повторите позже', type: GD.TYPE.success})
         }
     }
 )
