@@ -5,6 +5,7 @@ const nodeMailer = require('nodemailer')
 const {check, validationResult} = require('express-validator')
 const User = require('../models/User')
 const GD = require('../../globalData')
+const mail = require('../modules/mail')
 
 
 const route = Router()
@@ -74,22 +75,23 @@ route.post(
                 to: email,
                 subject: 'Проверка почти от bulhi',
                 text: 'Hello world? text',
-                html: `
-                <head>
-                    <style></style>
-                </head>
-                <body>
-                    <div style="width: 100%; min-height: 300px; font-size: 32px">
-                        <div style="background: ">
-                            <a href="${GD.server.host + GD.server.port + '/api/auth/mail/' + token}" target="_blank">
-                            Сылка для подтверждения почти, перейдите по ней:
-                            </a>
-                            <hr/>
-                            <a target="_blank" href="${GD.server.host + GD.server.port + '/api/auth/mail/' + token}" style="font-size: 16px">${GD.server.host + GD.server.port + '/api/auth/mail/' + token}</a>
-                        </div>
-                    <div>
-                </body>
-            `
+                html: mail({url: GD.server.url, token})
+            //         `
+            //     <head>
+            //         <style></style>
+            //     </head>
+            //     <body>
+            //         <div style="width: 100%; min-height: 300px; font-size: 32px">
+            //             <div style="background: ">
+            //                 <a href="${GD.server.host + GD.server.port + '/api/auth/mail/' + token}" target="_blank">
+            //                 Сылка для подтверждения почти, перейдите по ней:
+            //                 </a>
+            //                 <hr/>
+            //                 <a target="_blank" href="${GD.server.host + GD.server.port + '/api/auth/mail/' + token}" style="font-size: 16px">${GD.server.host + GD.server.port + '/api/auth/mail/' + token}</a>
+            //             </div>
+            //         <div>
+            //     </body>
+            // `
             })
 
             await user.save()

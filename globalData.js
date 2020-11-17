@@ -3,6 +3,7 @@ const globalData = {
     server: {
         host: 'http://localhost:',
         port: 5000, // port starting server
+        url: 'https://classtable.herokuapp.com', // url host
     },
     // conect mongodb
     MDB: {
