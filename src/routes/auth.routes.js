@@ -53,8 +53,9 @@ route.post(
             })
 
             if (!role){
-                if (!teacher){return res.status(401).json({m: 'выберете своего преподавателя'})}
+                if (!teacher){return res.status(401).json({m: 'Выберете своего преподавателя', type: GD.TYPE.warning})}
                 const teacherSearch = await User.findOne({login: teacher})
+                if (!teacherSearch){return res.status(401).json({m: 'Такой преподватель не найден', type: GD.TYPE.warning})}
                 user.teacher = teacherSearch.login
                 teacherSearch.students.push(login)
 
@@ -96,10 +97,10 @@ route.post(
 
             await user.save()
 
-            res.status(200).json({m: 'аккаунт создан', type: GD.TYPE.success})
+            res.status(200).json({m: 'Успешная регистрация', type: GD.TYPE.success})
         } catch (e) {
             console.log(e)
-            res.status(403).json({m: 'что-то сломалось', type: GD.TYPE.error})
+            res.status(403).json({m: 'Что-то сломалось', type: GD.TYPE.error})
         }
     }
 )
