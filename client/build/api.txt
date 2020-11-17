@@ -1,4 +1,5 @@
 Ответ: {m: 'text', type: 'success | error | warning'}
+header: 'Content-Type': 'application/json'
 
 Авторизация
 /api/auth
