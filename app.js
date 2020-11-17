@@ -25,7 +25,8 @@ app.use('/api/auth', require('./src/routes/auth.routes'))
 app.use('/api/lesson', require('./src/routes/lesson.routes'))
 
 
-app.use(express.static('static'))
+// app.use(express.static('static'))
+app.use(express.static('client/build'))
 
 const start = async () => {
     try {
