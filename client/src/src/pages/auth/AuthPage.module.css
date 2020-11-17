@@ -1,0 +1,29 @@
+.wrapper{
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--bg);
+}
+.block__wrapper{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    /*align-items: center;*/
+}
+.block{
+    margin-top: 30vh;
+    min-height: 450px;
+    /*background-color: chartreuse;*/
+    min-width: 20%;
+    /*max-width: 30%;*/
+}
+.blockSwitch{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 26px;
+}
+.blockSwitch div:first-child{
+    margin-right: var(--mrg-swt);
+}
+.blockSwitch div:last-child{
+    margin-left: var(--mrg-swt);
+}

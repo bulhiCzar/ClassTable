@@ -1,0 +1,101 @@
+.blockContentForm{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    color: #41f321;
+}
+.blockContentFormInput{
+    background-color: transparent;
+    border: 1px solid #41f321;
+    padding: 8px 20px;
+    margin-top: 16px;
+    color: #41f321;
+    font-size: 18px;
+}
+.blockContentFormSubmit{
+    background-color: transparent;
+    border: 1px solid #41f321;
+    padding: 8px 20px;
+    /*margin-top: 16px;*/
+    color: #41f321;
+}
+.blockContentRadio{
+
+    display: flex;
+    /*justify-content: space-around;*/
+    margin-top: 16px;
+    /*padding: 16px 0;*/
+    /*width: 100%;*/
+}
+.blockContentRadio div:first-child{
+    /*background-color: white;*/
+}
+.blockContentRadio div:last-child{
+    /*background-color: #b5285e;*/
+}
+.blockContentRadioItem{
+    /*background: var(--bg);*/
+    display: flex;
+    width: 50%;
+    justify-content: center;
+    padding: 16px 0;
+    text-transform: uppercase;
+    height: 100%;
+    overflow: hidden;
+    z-index: 3;
+    letter-spacing: 2px;
+    transition: .5s ease-in-out;
+}
+.blockContentRadioActive{
+    color: var(--bg);
+    background-color: var(--cl-gr);
+}
+
+.blockContentRadioItem:hover{
+    color: var(--bg);
+    background-color: var(--cl-gr);
+}
+.blockContentRadioItem:hover + .blockContentRadio .blockContentRadioActive {
+    /*display: none;*/
+    color: var(--cl-gr);
+    background-color: transparent;
+}
+
+.blockContentFormSubmit{
+    padding: 20px 0;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 600;
+    transition: color.7s, background-color .7s;
+}
+.blockContentFormSubmit:hover{
+    color: var(--bg);
+    background-color: var(--cl-gr);
+}
+.mt{
+    margin-top: 16px;
+}
+.activeInput{
+    transition: 1s;
+    position: absolute;
+    top: 55%;
+    left: 0;
+    right: 0;
+    width: 100%;
+}
+.blockContentFormInputDiv{
+    width: 100%;
+}
+
+.divclass{
+    margin-bottom: 16px;
+    overflow: hidden;
+    transition: height .5s, opacity 2s ;
+}
+.oneclass{
+    height: 0px;
+}
+.twoclass{
+    height: 56px;
+}
+

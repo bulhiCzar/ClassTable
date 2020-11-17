@@ -1,0 +1,10 @@
+.wrapper_app{
+  width: 100%;
+  /*min-height: 100vh;*/
+}
+
+:root{
+  --mrg-swt: 20px;
+  --bg: #111;
+  --cl-gr: #41f321;
+}
