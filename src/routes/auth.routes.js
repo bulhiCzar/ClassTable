@@ -25,7 +25,7 @@ route.post(
             const validation = validationResult(req)
             if (!validation.isEmpty()) {
                 res.status(400).json({
-                    m: 'данные говно',
+                    m: 'Некорректный формат данных',
                     type: GD.TYPE.warning,
                     values: validation.array()
                 })
@@ -118,18 +118,18 @@ route.post(
 
             const condition = await User.findOne({login: loginClient})
             if (!condition) {
-                res.status(403).json({m: 'ничего не найдено', type: GD.TYPE.warning})
+                res.status(403).json({m: 'Такого логина не найдено', type: GD.TYPE.warning})
                 return
             }
 
             const equivalent = await bcrypt.compare(passwordClient, condition.password)
             if (!equivalent){
-                res.status(403).json({m: 'пароль не подошел', type: GD.TYPE.warning})
+                res.status(403).json({m: 'Пароль не верный', type: GD.TYPE.warning})
                 return
             }
 
             if (!condition.confirmationEmail){
-                res.status(403).json({m: 'ваша почта не подтверждена', type: GD.TYPE.warning})
+                res.status(403).json({m: 'Ваша почта не подтверждена', type: GD.TYPE.warning})
                 return
             }
 
@@ -162,8 +162,8 @@ route.get(
             const id = req.params.id
             const condition = await User.findOne({token: id})
 
-            if (condition.token !== id) res.status(402).json({m: 'токен не равен...', type: GD.TYPE.warning})
-            if (!condition) res.status(402).json({m: 'ничего не найшлось по этому токену...', type: GD.TYPE.warning})
+            if (condition.token !== id) res.status(402).json({m: 'Токен не совпал', type: GD.TYPE.warning})
+            if (!condition) res.status(402).json({m: 'Ничего не нашлось по этому токену', type: GD.TYPE.warning})
 
             condition.token = undefined
             condition.confirmationEmail = true
