@@ -19,7 +19,7 @@ const SwitchItem = (props) => {
                     props.setSwitchBtn(true)
                 }}
             >
-                <span></span>
+                <span/>
                 <p>{props.text}</p>
             </div>
         )
@@ -34,7 +34,7 @@ const SwitchItem = (props) => {
                 }}
 
             >
-                <span></span>
+                <span/>
                 <p>{props.text}</p>
             </div>
         )
