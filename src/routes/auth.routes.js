@@ -170,7 +170,7 @@ route.get(
 
             res.status(200).json({m: 'Почта подтверждена', type: GD.TYPE.success})
         } catch (e) {
-            res.status(403).json({m: 'Ошибка какая-то, повторите позже', type: GD.TYPE.success})
+            res.status(403).json({m: 'Ошибка какая-то, повторите позже', type: GD.TYPE.error})
         }
     }
 )

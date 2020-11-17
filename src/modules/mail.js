@@ -147,3 +147,5 @@ const mail = ({url, token}) => {
 `
     )
 }
+
+module.exports = mail
