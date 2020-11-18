@@ -7,6 +7,7 @@ module.exports = async (req, res, next)=>{
             return next()
         }
         // ожидание получения авторизации
+        console.log(req.headers)
         // Authorization: Basic YWxhZGRpbjpvcGVuc2VzYW1l
         const token = req.headers.authorization.split(' ')[1]
 
