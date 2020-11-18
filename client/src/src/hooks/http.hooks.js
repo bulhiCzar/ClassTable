@@ -2,10 +2,10 @@ import {useCallback, useState} from "react";
 
 export const useHttp = () => {
     const [loading, setLoading] = useState(false)
-    const request = useCallback(async (url, method = 'GET', body, headers) => {
+    const request = useCallback(async (url, method = 'GET', body, headers = {'Content-Type': 'application/json'}) => {
         try {
             body = JSON.stringify(body)
-            headers = {'Content-Type': 'application/json'}
+            // headers = {'Content-Type': 'application/json'}
 
             setLoading(true)
             const response = await fetch(url, {method, body, headers})

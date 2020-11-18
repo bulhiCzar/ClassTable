@@ -27,6 +27,6 @@ module.exports = async (req, res, next)=>{
         next()
     }catch (e) {
         res.status(401).json({m: 'При проверке авторизации ошибка'})
-        // console.log(e)
+        console.log(e)
     }
 }
