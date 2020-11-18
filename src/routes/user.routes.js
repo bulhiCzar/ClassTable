@@ -20,7 +20,7 @@ route.post(
             const response = await User.findOne({login: user.login})
 
             if (!response.role){
-                res.status(401).json({m: 'Вы не преподаватель', })
+                res.status(401).json({m: 'Вы студент', })
             }
 
             const students = response.students
@@ -44,7 +44,7 @@ route.post(
             const response = await User.findOne({login: user.login})
 
             if (response.role){
-                res.status(401).json({m: 'Вы преподаватель', })
+                res.status(401).json({m: 'Вы преподаватель', teacher: response.login})
             }
 
             const teacher = response.teacher
