@@ -68,7 +68,7 @@ route.post(
 )
 
 
-route.get(
+route.post(
     '/all',
     auth,
     async (req, res) => {
