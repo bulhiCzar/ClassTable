@@ -20,7 +20,7 @@ route.post(
             const role = response.role
 
             if (!role){
-                res.status(401).json({m: 'Вы студент', students: response.login, role})
+                res.status(401).json({m: 'Вы студент', students: [response.login], role})
             }
 
             const students = response.students
