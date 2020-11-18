@@ -16,18 +16,19 @@ route.post(
     async (req, res) => {
         try {
             const user = req.user
-
             const response = await User.findOne({login: user.login})
+            const role = response.role
 
-            if (!response.role){
-                res.status(401).json({m: 'Вы студент', })
+            if (!role){
+                res.status(401).json({m: 'Вы студент', teacher: response.teacher, role})
             }
 
             const students = response.students
 
+
             // console.log(response)
 
-            res.json({m: 'ответ есть', students})
+            res.json({m: 'ответ есть', students, role})
         }catch (e) {
             res.status(403).json({m: 'Какая-то ошибка'})
         }
@@ -40,18 +41,18 @@ route.post(
     async (req, res) => {
         try {
             const user = req.user
-
             const response = await User.findOne({login: user.login})
+            const role = response.role
 
             if (response.role){
-                res.status(401).json({m: 'Вы преподаватель', teacher: response.login})
+                res.status(401).json({m: 'Вы преподаватель', teacher: response.login, role})
             }
 
             const teacher = response.teacher
 
             // console.log(response)
 
-            res.json({m: 'Учитель выдан', teacher})
+            res.json({m: 'Учитель выдан', teacher, role})
         }catch (e) {
             res.status(403).json({m: 'Какая-то ошибка'})
         }
