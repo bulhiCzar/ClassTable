@@ -20,7 +20,7 @@ route.post(
             const role = response.role
 
             if (!role){
-                res.status(401).json({m: 'Вы студент', students: [response.login], role})
+                return res.status(401).json({m: 'Вы студент', students: [response.login], role})
             }
 
             const students = response.students
@@ -45,7 +45,7 @@ route.post(
             const role = response.role
 
             if (response.role){
-                res.status(401).json({m: 'Вы преподаватель', teacher: response.login, role})
+                return res.status(401).json({m: 'Вы преподаватель', teacher: response.login, role})
             }
 
             const teacher = response.teacher
