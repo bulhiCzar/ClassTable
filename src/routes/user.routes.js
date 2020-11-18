@@ -34,5 +34,29 @@ route.post(
     }
 )
 
+route.post(
+    '/teacher',
+    auth,
+    async (req, res) => {
+        try {
+            const user = req.user
+
+            const response = await User.findOne({login: user.login})
+
+            if (response.role){
+                res.status(401).json({m: 'Вы преподаватель', })
+            }
+
+            const teacher = response.teacher
+
+            // console.log(response)
+
+            res.json({m: 'Учитель выдан', teacher})
+        }catch (e) {
+            res.status(403).json({m: 'Какая-то ошибка'})
+        }
+    }
+)
+
 
 module.exports = route
