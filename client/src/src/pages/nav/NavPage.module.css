@@ -1,0 +1,30 @@
+.active{
+    color: var(--cl-white) !important;
+}
+.navWrapper{
+    /*background-color: #b5285e;*/
+    padding: 0 20px;
+}
+.content{
+
+}
+.contentBlocks{
+    /*width: 500px;*/
+    margin-top: 20px;
+}
+.contentItem{
+    /*color: var(--cl-white);*/
+    color: #B4B4B4;
+    font-size: 18px;
+    display: flex;
+    padding: 4px 8px;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 2px;
+}
+.contentItem:hover{
+    background-color: #ffffff0a;
+}
+.contentItem > svg{
+    margin-right: 6px;
+}

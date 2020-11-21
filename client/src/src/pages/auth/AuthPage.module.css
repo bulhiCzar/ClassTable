@@ -10,20 +10,25 @@
     /*align-items: center;*/
 }
 .block{
-    margin-top: 30vh;
     min-height: 450px;
+    margin: 0 90px;
+    margin-top: 30vh;
     /*background-color: chartreuse;*/
-    min-width: 20%;
+    /*min-width: 20%;*/
     /*max-width: 30%;*/
 }
 .blockSwitch{
     display: flex;
     justify-content: space-around;
     margin-bottom: 26px;
+    /*min-width: 30%;*/
 }
 .blockSwitch div:first-child{
     margin-right: var(--mrg-swt);
 }
 .blockSwitch div:last-child{
     margin-left: var(--mrg-swt);
+}
+.blockContent{
+    min-width: 20%;
 }

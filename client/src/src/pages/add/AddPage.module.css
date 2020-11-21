@@ -1,0 +1,174 @@
+.wrapper {
+    background-color: var(--cl-dark);
+    height: 100%;
+    width: 1200px;
+
+    /*display: inline-block;*/
+}
+
+.block {
+    margin: 15px;
+    /*background-color: #41f321;*/
+}
+
+.title {
+    display: flex;
+    justify-content: space-between;
+    font-size: 26px;
+    width: 100%;
+    font-weight: 700;
+    min-height: 60px;
+    color: var(--cl-white)
+    /*background-color: aquamarine;*/
+}
+.titleText{
+    padding: 16px 28px;
+}
+
+.main {
+    margin-top: 30px;
+    min-height: 195px;
+}
+
+.selectors {
+    display: flex;
+    box-sizing: content-box;
+}
+
+.selectorItem {
+    margin: 15px;
+    color: var(--cl-white);
+    width: 20%;
+}
+
+.selectorName {
+    text-align: start;
+    height: 35%;
+    font-size: 12px;
+    font-weight: 400;
+    color: #F2F2F259;
+}
+
+.selectorContent {
+    height: 65%;
+    display: inline-block;
+    min-width: 100%;
+    /*flex-direction: column;*/
+}
+
+
+.inputComment {
+    width: 80%;
+    margin: 15px;
+    /*background-color: #ECECEA;*/
+    /*text-align: left;*/
+}
+
+.blockPrice{
+    text-transform: uppercase;
+    color: var(--cl-white);
+    display: flex;
+    align-items: center;
+
+}
+.priceText{
+}
+
+.btnAdd {
+    width: 20%;
+    margin: 15px;
+}
+
+
+.constructor{
+    margin-top: 16vh;
+    /*background-color: #b5285e;*/
+}
+.cblock{
+    width: 100%;
+    display: flex;
+    /*justify-content: space-around;*/
+}
+.cblockItems{
+    margin: 15px;
+    padding: 2px 15px;
+    padding-bottom: 1px;
+    width: 20%;
+}
+.cLabel{
+    color: var(--cl-pl);
+    font-size: 12px;
+    padding: 0px 3px;
+}
+.cLabelTwo{
+    display: flex;
+    justify-content: space-between;
+}
+.cText{
+    color: var(--cl-white);
+    min-width: 100px;
+    background-color: #34343487;
+    min-height: 42px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 6px;
+    font-size: 18px;
+    padding: 0px 8px;
+    text-align: center;
+    /*border-radius: 50px;*/
+    transition: all 1s ease-in-out;
+}
+.cDateTime{
+    /*font-size: 20px;*/
+}
+.left{
+    text-align: left;
+}
+.right{
+    text-align: end;
+}
+
+/* Color Theme Swatches in Hex */
+.color-theme_991c692bae8dcba2edd7fcc7a4ec711c-1-hex {
+    color: #434B56;
+}
+
+.color-theme_991c692bae8dcba2edd7fcc7a4ec711c-2-hex {
+    color: #626F82;
+}
+
+.color-theme_991c692bae8dcba2edd7fcc7a4ec711c-3-hex {
+    color: #C8C2B6;
+}
+
+.color-theme_991c692bae8dcba2edd7fcc7a4ec711c-4-hex {
+    color: #E0E0D8;
+}
+
+.color-theme_991c692bae8dcba2edd7fcc7a4ec711c-5-hex {
+    color: #ECECEA;
+}
+
+/* Color Theme Swatches in RGBA */
+.color-theme_991c692bae8dcba2edd7fcc7a4ec711c-1-rgba {
+    color: rgba(67, 75, 86, 1);
+}
+
+.color-theme_991c692bae8dcba2edd7fcc7a4ec711c-2-rgba {
+    color: rgba(98, 111, 130, 1);
+}
+
+.color-theme_991c692bae8dcba2edd7fcc7a4ec711c-3-rgba {
+    color: rgba(200, 194, 182, 1);
+}
+
+.color-theme_991c692bae8dcba2edd7fcc7a4ec711c-4-rgba {
+    color: rgba(224, 224, 216, 1);
+}
+
+.color-theme_991c692bae8dcba2edd7fcc7a4ec711c-5-rgba {
+    color: rgba(236, 236, 234, 1);
+}
+
+

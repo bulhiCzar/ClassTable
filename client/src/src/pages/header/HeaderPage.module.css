@@ -1,0 +1,36 @@
+.root{
+    /*background-color: #41f321;*/
+    margin-bottom: 1rem;
+
+}
+.appBar{
+    background-color: var(--cl-dark) !important;
+}
+.wrapper{
+    min-width: 200px;
+    width: 100%;
+    max-width: 1400px;
+    /*background-color: #41f321;*/
+    justify-content: space-between;
+    margin: 0 auto;
+}
+.title{
+    margin-left: 2rem;
+    font-size: 24px !important;
+}
+.persona{
+    color: var(--cl-white) !important;
+}
+.persona:nth-child(1) {
+    /*display: none !important;*/
+}
+.personaText{
+    padding-right: 10px;
+}
+.personaIcon{
+    font-size: 36px !important;
+    /*vertical-align: bottom;*/
+}
+.menu > div.MuiPaper-root{
+    background-color: #41f321 !important;
+}

@@ -1,10 +1,13 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import {useState} from 'react'
 import {useHttp} from '../../../hooks/http.hooks'
 import {useToast} from '../../../hooks/toast.hooks'
 import s from './BlockContentItem.module.css'
+import {AuthContext} from "../../../context/auth.contexnt";
+import GD from "../../../../GD";
 
 const BlockContentItem = (props) => {
+    const auth = useContext(AuthContext)
     const [role, setRole]  = useState(false)
     const [active1, setActive1] =useState(true)
     const [active2, setActive2] =useState(true)
@@ -14,6 +17,7 @@ const BlockContentItem = (props) => {
 
     const {request, loading} = useHttp()
     const {setToast} = useToast()
+    const {state} = GD()
 
     const handlerInput = (e)=>{
         setInput({...input, [e.target.name]: e.target.value})
@@ -26,6 +30,7 @@ const BlockContentItem = (props) => {
         if (e.target.dataset.info === 'login'){
             const res = await request('https://classtable.herokuapp.com/api/auth/login', 'POST', user)
             setToast(res)
+            auth.login(res.tokenAuth)
 
         }else if (e.target.dataset.info === 'register'){
             user = {...user, email: input.email, teacher: input.teacher, role}

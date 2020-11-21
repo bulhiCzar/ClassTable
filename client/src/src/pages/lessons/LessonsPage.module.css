@@ -1,0 +1,12 @@
+.wrapper{
+    width: 1200px;
+    background-color: var(--cl-dark);
+    height: 100%;
+}
+.content{
+
+}
+.blockTitle{
+    font-size: 20px;
+    background-color: #b5285e;
+}

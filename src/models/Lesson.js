@@ -9,7 +9,8 @@ const lesson = new Schema({
     dateCarrying: {type: Number, required: true}, // дата проведения
     owner: {type: String}, // создатель урока
     comment: {type: String}, // коментарий к заказу
-    topic: {type: String} // тема занятия
+    topic: {type: String}, // тема занятия
+    multiplier: {type: Number, default: 1}
 })
 
 module.exports = model('Lesson', lesson)

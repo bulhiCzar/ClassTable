@@ -1,10 +1,57 @@
-.wrapper_app{
-  width: 100%;
-  /*min-height: 100vh;*/
+.wrapper_app {
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--cl-darkW);
+    /*display: flex;*/
+    justify-content: center;
+    flex-direction: row;
 }
 
-:root{
-  --mrg-swt: 20px;
-  --bg: #111;
-  --cl-gr: #41f321;
+.wrapper_pages {
+    /*background-color: #b5285e;*/
+    /*width: 1200px;*/
+    /*margin: 0 auto;*/
+    display: flex;
+    justify-content: center;
+
+}
+.MuiFilledInput-root.Mui-focused{
+    background-color: transparent !important;
+}
+
+:root {
+    --mrg-swt: 20px;
+    --bg: #111;
+    --cl-gr: #41f321;
+
+    --cl-dark: #262626;
+    --cl-darkW: #404040;
+
+    --cl-white: #f2f2f2;
+    --cl-pl: #F2F2F259;
+
+    --cl-darkL: #434B56;
+    --cl-darkWL: #626F82;
+    --cl-creamL: #C8C2B6;
+    --cl-creamWL: #E0E0D8;
+    --cl-whiteL: #ECECEA;
+}
+.color-theme_991c692bae8dcba2edd7fcc7a4ec711c-1-hex {
+    color: #434B56;
+}
+
+.color-theme_991c692bae8dcba2edd7fcc7a4ec711c-2-hex {
+    color: #626F82;
+}
+
+.color-theme_991c692bae8dcba2edd7fcc7a4ec711c-3-hex {
+    color: #C8C2B6;
+}
+
+.color-theme_991c692bae8dcba2edd7fcc7a4ec711c-4-hex {
+    color: #E0E0D8;
+}
+
+.color-theme_991c692bae8dcba2edd7fcc7a4ec711c-5-hex {
+    color: #ECECEA;
 }
