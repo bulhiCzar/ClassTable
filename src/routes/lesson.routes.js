@@ -17,7 +17,7 @@ route.post(
     [
         check('student').isAlphanumeric(),
         check('teacher').isAlphanumeric(),
-        check('topic').trim().rtrim().escape().isAlphanumeric(),
+        check('topic').trim().rtrim().escape(),
         check('price').isNumeric(),
         check('date').isNumeric(),
         check('comment').trim().rtrim().escape(),
@@ -27,14 +27,14 @@ route.post(
             const validation = validationResult(req)
             if (!validation.isEmpty()) {
                 return res.status(400).json({
-                    message: 'данные говно',
+                    m: 'Данные не приняты',
                     type: GD.TYPE.warning,
                     values: validation.array()
                 })
             }
 
             const user = req.user
-            const {student, teacher, price, date, comment, topic} = req.body
+            const {student, teacher, price, date, comment, topic, multiplier} = req.body
 
             const lesson = new Lesson({
                 student,
@@ -44,14 +44,14 @@ route.post(
                 dateCarrying: date,
                 owner: user.login,
                 comment,
-                topic
+                topic,
+                multiplier
             })
 
             const teacherDB = await User.findOne({login: teacher})
             const studentDB = await User.findOne({login: student})
 
-            if (!(teacherDB || studentDB)){return res.status(401).json({m: 'преподаватель или студент не были найдены', type: GD.TYPE.warning})}
-
+            if (!(teacherDB || studentDB)){return res.status(401).json({m: 'Преподаватель или студент не найдены', type: GD.TYPE.warning})}
 
             teacherDB.lessons.push(lesson._id)
             studentDB.lessons.push(lesson._id)

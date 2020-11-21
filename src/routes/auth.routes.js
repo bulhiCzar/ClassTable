@@ -14,18 +14,18 @@ const route = Router()
 route.post(
     '/register',
     [
-        check('login', 'Логин не подошел...').trim().rtrim().isLength({min: 4, max: 20}).escape().isAlphanumeric(),
-        check('email', 'mail govno').trim().isEmail().normalizeEmail().escape(),
-        check('password', 'pass call').trim().isLength({min: 6, max: 18}),
-        check('role', 'role not true').isBoolean(),
-        check('teacher', 'учитель не прошел валидацию').trim().rtrim()
+        check('login', 'Логин побольше сделай').trim().rtrim().isLength({min: 4, max: 20}).escape().isAlphanumeric(),
+        check('email', 'Это не почта').trim().isEmail().normalizeEmail().escape(),
+        check('password', 'Маленький пароль').trim().isLength({min: 6, max: 18}),
+        check('role', 'Какая ваша роль?').isBoolean(),
+        check('teacher', 'Заполните учителя').trim().rtrim()
     ],
     async (req, res) => {
         try {
             const validation = validationResult(req)
             if (!validation.isEmpty()) {
                 res.status(400).json({
-                    m: 'Некорректный формат данных',
+                    m: 'Данные не приняты',
                     type: GD.TYPE.warning,
                     values: validation.array()
                 })
@@ -36,7 +36,7 @@ route.post(
             const validateUserLogin = await User.findOne({login})
             const validateUserEmail = await User.findOne({email})
             if (validateUserEmail || validateUserLogin) {
-                res.status(402).json({m: 'Уже было зарегано', type: GD.TYPE.warning})
+                res.status(402).json({m: 'логин или почта уже заняты', type: GD.TYPE.warning})
                 return
             }
 
@@ -171,6 +171,19 @@ route.get(
 
             res.status(200).json({m: 'Почта подтверждена', type: GD.TYPE.success})
         } catch (e) {
+            res.status(403).json({m: 'Ошибка какая-то, повторите позже', type: GD.TYPE.error})
+        }
+    }
+)
+
+route.post(
+    '/token',
+    async ()=>{
+        try {
+            const token =
+
+            res.status(200).json({m: 'Токен проверен', type: GD.TYPE.success})
+        }catch (e) {
             res.status(403).json({m: 'Ошибка какая-то, повторите позже', type: GD.TYPE.error})
         }
     }
