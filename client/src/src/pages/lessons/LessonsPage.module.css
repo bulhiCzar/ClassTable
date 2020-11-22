@@ -4,9 +4,29 @@
     height: 100%;
 }
 .content{
-
+    margin: 15px;
 }
 .blockTitle{
-    font-size: 20px;
-    background-color: #b5285e;
+    display: flex;
+    justify-content: space-between;
+    font-size: 26px;
+    width: 100%;
+    font-weight: 700;
+    min-height: 60px;
+    color: var(--cl-white);
+}
+.titleText{
+    padding: 16px 28px;
+}
+.blockContent{
+
+}
+
+.main{
+
+}
+.mainItem{
+    display: flex;
+    justify-content: space-between;
+    padding: 50px;
 }

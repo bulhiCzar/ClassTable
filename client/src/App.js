@@ -8,25 +8,28 @@ import {AuthContext} from "./src/context/auth.contexnt";
 import {BrowserRouter} from "react-router-dom";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import HeaderPage from "./src/pages/header/HeaderPage";
+import {useHttp} from "./src/hooks/http.hooks";
+import GD from "./GD";
+import {useCallback, useEffect} from "react";
 
 
 
 function App() {
 
-    const {login, logout, token, ready} = useAuth()
+    const {login, logout, token, ready, name} = useAuth()
     const isAuthenticated = !!token
     const routes = useRotes(isAuthenticated)
 
-
+    const {request} = useHttp()
+    const {state} = GD()
 
     if (!ready){
         return(
             <LinearProgress />
         )
     }
-
     return (
-        <AuthContext.Provider value={{login, logout, token}}>
+        <AuthContext.Provider value={{login, logout, token, name}}>
             <ToastProvider>
                 <BrowserRouter>
                 <div className="wrapper_app">

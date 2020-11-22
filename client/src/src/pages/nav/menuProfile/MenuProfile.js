@@ -1,12 +1,14 @@
 import s from "../../header/HeaderPage.module.css";
 import {MenuItem, Menu, IconButton} from "@material-ui/core";
-import {useContext, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {AccountCircle} from "@material-ui/icons";
 import {withStyles} from "@material-ui/styles";
 import {AuthContext} from "../../../context/auth.contexnt";
+import {useAuth} from "../../../hooks/auth.hooks";
 
 const MenuProfile = () => {
-    const {logout} = useContext(AuthContext)
+    const {name, logout} = useContext(AuthContext)
+
 
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl)
@@ -24,7 +26,7 @@ const MenuProfile = () => {
         handleClose()
         logout()
     }
-
+    // console.log(name)
 
     const StyledMenuItem = withStyles({
         root: {
@@ -52,7 +54,7 @@ const MenuProfile = () => {
                 onClick={handleMenu}
                 // color="inherit"
             >
-                <div className={s.personaText}>bulhi</div>
+                <div className={s.personaText}>{name}</div>
                 <AccountCircle className={s.personaIcon}/>
             </IconButton>
             <Menu

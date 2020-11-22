@@ -39,8 +39,6 @@ const SwitchItem = (props) => {
             </div>
         )
     }
-
-    return <div>null</div>
 }
 
 export default SwitchItem

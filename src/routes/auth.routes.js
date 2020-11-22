@@ -6,6 +6,7 @@ const {check, validationResult} = require('express-validator')
 const User = require('../models/User')
 const GD = require('../../globalData')
 const mail = require('../modules/mail')
+const auth = require('../middleware/auth.middleware')
 
 
 const route = Router()
@@ -148,7 +149,7 @@ route.post(
 
             condition.save()
 
-            res.status(200).json({m: 'Успешный вход', type: GD.TYPE.success, tokenAuth})
+            res.status(200).json({m: 'Успешный вход', type: GD.TYPE.success, tokenAuth, name: condition.login, role: condition.role})
         } catch (e) {
             res.status(403).json({m: 'Ошибка какая-то, повторите позже', type: GD.TYPE.warning, e})
         }
@@ -178,11 +179,31 @@ route.get(
 
 route.post(
     '/token',
-    async ()=>{
+    // auth,
+    async (req, res)=>{
         try {
-            const token =
+            // const login = req.user.login
+            const token = req.body.token
 
-            res.status(200).json({m: 'Токен проверен', type: GD.TYPE.success})
+            if (token === 'undefined' || token === 'null'){
+                return res.status(401).json({m: 'Токена нет', exit: true})
+            }
+            if (!token){
+                return res.status(401).json({m: 'Вы не авторизованны', exit: true, help: 'not have auth token'})
+            }
+
+            const decode = jwt.verify(token, GD.JWT.secretKey, (err, decode)=>{
+                if (err){return}else {return decode}
+            })
+            if (!decode){
+                return res.status(401).json({m: 'Авторизация изтекла!', exit: true})
+            }
+            const login = decode.login
+            const user = await User.findOne({login})
+
+            const role = user.role
+
+            res.status(200).json({m: 'Токен проверен', type: GD.TYPE.success, login, role})
         }catch (e) {
             res.status(403).json({m: 'Ошибка какая-то, повторите позже', type: GD.TYPE.error})
         }

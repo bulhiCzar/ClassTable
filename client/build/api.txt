@@ -9,8 +9,11 @@ header: 'Content-Type': 'application/json'
 /login  -  POST - Принимает обязательные параметры: login, password: String
 Возвращает токен авторизации. В последующем посылать его в хедерах для авторизации пользователя
 Authorization: Bearer token
+const headers = {authorization: `Bearer ${token}`}
 
 /mail/:id  -  GET  -  Принимает  :id в качестве подтверждения проверки почти
+
+/token  -  POST   -
 
 
 Занятия

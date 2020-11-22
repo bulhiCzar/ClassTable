@@ -1,5 +1,4 @@
 import {useToasts} from 'react-toast-notifications'
-import {useCallback} from "react";
 
 export const useToast = (props) => {
     const {addToast} = useToasts()
@@ -9,7 +8,7 @@ export const useToast = (props) => {
             addToast(props.content, {
                 content: props.m,
                 appearance: props.type,
-                // autoDismiss: true,
+                autoDismiss: true,
                 placement: 'bottom-center',
                 // autoDismissTimeout: 60000,
             })

@@ -10,15 +10,18 @@ module.exports = async (req, res, next)=>{
         // console.log(req.headers)
         // Authorization: Basic YWxhZGRpbjpvcGVuc2VzYW1l
         const token = req.headers.authorization.split(' ')[1]
+        // console.log(token)
 
-        if (token === 'undefined'){
-            return res.status(401).json({m: 'токена нет'})
+        if (token === 'undefined' || token === 'null'){
+            return res.status(401).json({m: 'Токена нет'})
         }
         if (!token){
             return res.status(401).json({m: 'Вы не авторизованны', help: 'not have auth token'})
         }
 
-        const decode = jwt.verify(token, GD.JWT.secretKey)
+        const decode = jwt.verify(token, GD.JWT.secretKey, (err, decode)=>{
+            if (err){return}else {return decode}
+        })
         if (!decode){
             return res.status(401).json({m: 'Авторизация изтекла'})
         }

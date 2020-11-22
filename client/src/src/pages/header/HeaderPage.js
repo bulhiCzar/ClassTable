@@ -6,8 +6,6 @@ import MenuProfile from "../nav/menuProfile/MenuProfile";
 
 const HeaderPage = () => {
 
-
-
     return (
         <div className={s.root}>
             <AppBar position="static" className={s.appBar}>
