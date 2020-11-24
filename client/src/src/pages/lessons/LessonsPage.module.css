@@ -1,3 +1,12 @@
+.none{
+    opacity: 0;
+}
+.one{
+    height: 0px;
+}
+.two{
+    height: 100%;
+}
 .wrapper{
     width: 1200px;
     background-color: var(--cl-dark);
@@ -23,10 +32,26 @@
 }
 
 .main{
-
+    overflow: hidden;
+    transition: height .5s, opacity 2s ;
 }
 .mainItem{
     display: flex;
     justify-content: space-between;
-    padding: 50px;
+    margin: 15px;
+    color: var(--cl-white);
+}
+.mainItem > div{
+    /*width: 15%;*/
+    margin: 0 15px;
+}
+.nubmer{
+    background-color: #b5285e;
+    width: 100%;
+    max-width: 50px;
+    overflow: hidden;
+}
+.role{
+    width: 100%;
+    max-width: 40px;
 }

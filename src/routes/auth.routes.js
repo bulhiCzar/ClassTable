@@ -156,18 +156,30 @@ route.post(
     }
 )
 
-route.get(
+route.post(
     '/mail/:id',
     async (req, res) => {
         try {
             const id = req.params.id
-            const condition = await User.findOne({token: id})
-
-            if (condition.token !== id) res.status(402).json({m: 'Токен не совпал', type: GD.TYPE.warning})
-            if (!condition) res.status(402).json({m: 'Ничего не нашлось по этому токену', type: GD.TYPE.warning})
+            const condition = await User.findOne({token: id}, (err, data)=>{
+                return err
+            })
+            if (condition === null) {
+                res.status(403).json({m: 'Ничего не нашлось по этому токену', type: GD.TYPE.warning})
+                return
+            }
+            if (!condition) {
+                res.status(403).json({m: 'Ничего не нашлось по этому токену', type: GD.TYPE.warning})
+                return
+            }
+            if (condition.token !== id) {
+                return res.status(403).json({m: 'Токен не совпал', type: GD.TYPE.warning})
+            }
 
             condition.token = undefined
             condition.confirmationEmail = true
+
+
             await condition.save()
 
             res.status(200).json({m: 'Почта подтверждена', type: GD.TYPE.success})

@@ -13,6 +13,9 @@ const pages = [
 const NavPage = ()=>{
     return(
         <div className={s.navWrapper}>
+            <div className={s.menu}>
+                <div></div>
+            </div>
             <div className={s.content}>
                 <div className={s.contentBlocks}>
                     {pages.map((item, idx)=>{

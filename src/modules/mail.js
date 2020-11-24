@@ -1,5 +1,6 @@
 const mail = ({url, token}) => {
-
+    const link = url + '/mail/' + token
+    console.log(link)
     return (`
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office" style="width:100%;font-family:roboto, 'helvetica neue', helvetica, arial, sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;padding:0;Margin:0">
@@ -24,9 +25,9 @@ const mail = ({url, token}) => {
         </o:OfficeDocumentSettings>
     </xml>
     <![endif]-->
-    <!--[if !mso]><!-- -->
+    <!--[if !mso]>
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i" rel="stylesheet">
-    <!--<![endif]-->
+    <![endif]-->
     <style type="text/css">
         .rollover:hover .rollover-first {
             max-height:0px!important;
@@ -104,7 +105,7 @@ const mail = ({url, token}) => {
                                                 <td style="padding:0 30%;Margin:0;width:560px" valign="top" align="center">
                                                     <table width="100%" cellspacing="0" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
                                                         <tr style="border-collapse:collapse">
-                                                            <td style="padding:0;Margin:0;border:2px solid #41F321" align="center"><a href="${url + '/api/auth/mail/' + token}" style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:16px;font-family:roboto, 'helvetica neue', helvetica, arial, sans-serif;line-height:24px;color:#41F321">Перейдите по сылке</a></td>
+                                                            <td style="padding:0;Margin:0;border:2px solid #41F321" align="center"><a href="${link}" style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:16px;font-family:roboto, 'helvetica neue', helvetica, arial, sans-serif;line-height:24px;color:#41F321">Перейдите по сылке</a></td>
                                                         </tr>
                                                     </table></td>
                                             </tr>
@@ -117,7 +118,7 @@ const mail = ({url, token}) => {
                                                 <td valign="top" align="center" style="padding:0;Margin:0;width:600px">
                                                     <table style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:separate;border-spacing:0px;border-radius:20px" width="100%" cellspacing="0" cellpadding="0" bgcolor="#f0f3fe" role="presentation">
                                                         <tr style="border-collapse:collapse">
-                                                            <td align="left" style="padding:0;Margin:0"><h1 style="Margin:0;line-height:45px;mso-line-height-rule:exactly;font-family:roboto, 'helvetica neue', helvetica, arial, sans-serif;font-size:30px;font-style:normal;font-weight:bold;color:#212121;text-align:center">Подтвердите вашу почту перейдя по <a target="_blank" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:roboto, 'helvetica neue', helvetica, arial, sans-serif;font-size:30px;text-decoration:underline;color:#2CB543;text-align:center" href="${url + '/api/auth/mail/' + token}">сылке</a></h1></td>
+                                                            <td align="left" style="padding:0;Margin:0"><h1 style="Margin:0;line-height:45px;mso-line-height-rule:exactly;font-family:roboto, 'helvetica neue', helvetica, arial, sans-serif;font-size:30px;font-style:normal;font-weight:bold;color:#212121;text-align:center">Подтвердите вашу почту перейдя по <a target="_blank" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:roboto, 'helvetica neue', helvetica, arial, sans-serif;font-size:30px;text-decoration:underline;color:#2CB543;text-align:center" href="${link}">сылке</a></h1></td>
                                                         </tr>
                                                     </table></td>
                                             </tr>
@@ -130,7 +131,7 @@ const mail = ({url, token}) => {
                                                 <td valign="top" align="center" style="padding:0;Margin:0;width:560px">
                                                     <table width="100%" cellspacing="0" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
                                                         <tr style="border-collapse:collapse">
-                                                            <td align="left" style="padding:0;Margin:0"><a style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:roboto, 'helvetica neue', helvetica, arial, sans-serif;font-size:16px;text-decoration:underline;color:#FFFFFF" href="${url + '/api/auth/mail/' + token}">${url + '/api/auth/mail/' + token}</a><a style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:roboto, 'helvetica neue', helvetica, arial, sans-serif;font-size:16px;text-decoration:underline;color:#FFFFFF" href=""></a></td>
+                                                            <td align="left" style="padding:0;Margin:0"><a style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:roboto, 'helvetica neue', helvetica, arial, sans-serif;font-size:16px;text-decoration:underline;color:#FFFFFF" href="${link}">${link}</a><a style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:roboto, 'helvetica neue', helvetica, arial, sans-serif;font-size:16px;text-decoration:underline;color:#FFFFFF" href=""></a></td>
                                                         </tr>
                                                     </table></td>
                                             </tr>

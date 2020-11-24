@@ -47,6 +47,7 @@ route.post(
                 topic,
                 multiplier
             })
+            // console.log(lesson)
 
             const teacherDB = await User.findOne({login: teacher})
             const studentDB = await User.findOne({login: student})
@@ -62,6 +63,7 @@ route.post(
 
             res.status(200).json({m: 'Урок добавлен', type: GD.TYPE.success})
         } catch (e) {
+            console.log(e)
             res.status(403).json({m: 'что-то сломалось', type: GD.TYPE.error,})
         }
     }
@@ -79,7 +81,8 @@ route.post(
 
             for (let i = 0; user.lessons.length > i; i++){
                 const id = user.lessons[i]
-                lessons.push(await Lesson.findOne({_id: id}))
+                const item = await Lesson.findOne({_id: id})
+                lessons.push(item)
             }
 
             res.status(200).json({m: 'Данные выданы', type: GD.TYPE.success, lessons})

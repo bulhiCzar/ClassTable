@@ -10,7 +10,7 @@ import {createMuiTheme} from "@material-ui/core";
 import {ThemeProvider} from "@material-ui/styles";
 import Button from "@material-ui/core/Button";
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import {AuthContext} from "../../context/auth.contexnt";
+import {AuthContext} from "../../context/AuthContext";
 import {useToast} from "../../hooks/toast.hooks";
 
 
@@ -79,7 +79,8 @@ const AddPage = () => {
             setTime(null)
             return
         }
-        // console.log(e._d)
+        console.log(Date.parse(e._d))
+        console.log(e._d)
         const date = e._d.toJSON().slice(0, 10).replace(':', '-').split('-').reverse().join('.').slice(0, 5)
         const time = e._d.toJSON().slice(11, 16)
         setDateCarrying(Date.parse(e._d))
@@ -106,6 +107,7 @@ const AddPage = () => {
         }
 
         const res = await request(`${state.SERVER.url}/api/lesson/add`, 'POST', billet, headers)
+        // console.log(res)
         setToast(res)
     }
 

@@ -1,0 +1,132 @@
+.none {
+    opacity: 0;
+}
+
+.one {
+    height: 0px;
+}
+
+.two {
+    height: 100%;
+}
+
+.wrapper {
+    min-width: 350px;
+    width: 1200px;
+    height: 100%;
+    background-color: var(--cl-dark);
+    margin: 0 20px;
+}
+
+.content {
+    width: 100%;
+    padding: 15px;
+}
+
+.blockTitle {
+    display: flex;
+    justify-content: space-between;
+    font-size: 26px;
+    width: 100%;
+    font-weight: 700;
+    min-height: 60px;
+    color: var(--cl-white);
+}
+
+.titleText {
+    padding: 16px 28px;
+}
+
+.blockContent {
+
+}
+
+.main {
+    overflow: hidden;
+    transition: height .5s, opacity 2s;
+}
+
+.mainItem {
+    /*display: flex;*/
+    /*justify-content: space-between;*/
+    /*margin: 15px;*/
+    color: var(--cl-white);
+}
+
+.mainItem > div {
+    /*width: 15%;*/
+    /*margin: 0 15px;*/
+}
+
+.mainDate {
+    display: flex;
+
+    /*display: inline-flex;*/
+    padding: 0 28px;
+    font-size: 24px;
+    font-weight: 900;
+
+}
+
+.mainDateTitle {
+    display: none;
+    width: 100%;
+}
+
+.mainDateBlock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*background-color: #b5285e;*/
+}
+
+span.line {
+    /*background-color: #41f321;*/
+    /*width: 10px;*/
+    /*height: 10px;*/
+}
+
+span.line:before {
+    content: '';
+    width: 18px;
+    height: 2px;
+    display: block;
+    margin: 0 10px;
+    background-color: var(--cl-white);
+}
+
+.mainCards {
+    /*background-color: #41f321;*/
+    margin: 0 18px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+}
+
+.card {
+    min-width: 180px;
+    width: calc(25% - 15px * 2);
+    margin: 15px;
+    /*padding: 12px;*/
+}
+
+.cardBody, .cardHeader {
+    padding: 12px;
+}
+
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    font-weight: 900;
+    background-color: #4b4a4a;
+}
+
+.cardBody {
+    background-color: #3d3d3d;
+    font-size: 16px;
+}
+
+.cardDateRole {
+
+}

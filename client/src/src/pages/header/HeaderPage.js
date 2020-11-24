@@ -1,10 +1,11 @@
 import {Typography, Toolbar} from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
 import s from './HeaderPage.module.css'
-import MenuProfile from "../nav/menuProfile/MenuProfile";
+import MenuProfile from "./menuProfile/MenuProfile";
+import LinearProgress from "@material-ui/core/LinearProgress";
 
 
-const HeaderPage = () => {
+const HeaderPage = ({loading}) => {
 
     return (
         <div className={s.root}>
@@ -20,7 +21,11 @@ const HeaderPage = () => {
                     </div>
 
                 </Toolbar>
+                {!loading && <div className='progressLine'>
+                    <LinearProgress/>
+                </div>}
             </AppBar>
+
         </div>
     )
 }

@@ -1,9 +1,9 @@
-import s from "../../header/HeaderPage.module.css";
+import s from "../HeaderPage.module.css";
 import {MenuItem, Menu, IconButton} from "@material-ui/core";
 import {useContext, useEffect, useState} from "react";
 import {AccountCircle} from "@material-ui/icons";
 import {withStyles} from "@material-ui/styles";
-import {AuthContext} from "../../../context/auth.contexnt";
+import {AuthContext} from "../../../context/AuthContext";
 import {useAuth} from "../../../hooks/auth.hooks";
 
 const MenuProfile = () => {
@@ -36,9 +36,6 @@ const MenuProfile = () => {
             '&:hover':{
               backgroundColor: '#4D4D4D'
             },
-        },
-        label: {
-            textTransform: 'capitalize',
         },
     })(MenuItem);
 
@@ -92,8 +89,7 @@ const MenuProfile = () => {
                         }
                     },
                 }}
-
-                // variant={'selectedMenu'}
+                variant={'selectedMenu'}
                 open={open}
                 onClose={handleClose}
             >

@@ -4,8 +4,6 @@ import GD from "../../GD";
 
 
 const storageGlobal = 'ClassTable'
-// const storageRole = 'role'
-// const storageName = 'name'
 
 export const useAuth = () => {
     const [token, setToken] = useState(null)
@@ -19,36 +17,21 @@ export const useAuth = () => {
 
     const login = useCallback(({token, name, role}) => {
         setToken(token)
-        // setRole(role)
-        // setName(name)
 
         localStorage.setItem(storageGlobal, JSON.stringify(token))
-        // localStorage.setItem(storageRole, JSON.stringify(role))
-        // localStorage.setItem(storageName, JSON.stringify(name))
-
     }, [])
 
     const logout = useCallback(() => {
         setToken(null)
-        // setName(null)
-        // setRole(null)
 
         localStorage.removeItem(storageGlobal)
-        // localStorage.removeItem(storageRole)
-        // localStorage.removeItem(storageName)
     }, [])
 
 
     useEffect(() => {
         const tokenjson = localStorage.getItem(storageGlobal)
-        // const rolejson = localStorage.getItem(storageRole)
-        // const namejson = localStorage.getItem(storageName)
-
 
         const token = JSON.parse(tokenjson)
-        // const role = JSON.parse(rolejson)
-        // const name = JSON.parse(namejson)
-
 
         if (token) {
             login({token})
@@ -58,7 +41,7 @@ export const useAuth = () => {
 
 
     const checkToken = useCallback(async ()=>{
-        if (!token){return }
+        if (!token){return}
         setReady(false)
         const res = await request(`${state.SERVER.url}/api/auth/token`, 'POST', {token})
         if (res.exit){
@@ -69,7 +52,7 @@ export const useAuth = () => {
         setName(res.login)
         setRole(res.role)
         setReady(true)
-        console.log(res)
+        // console.log(res)
     },[setReady, request, state.SERVER.url, token, setRole, setName, logout])
 
     useEffect(()=>{

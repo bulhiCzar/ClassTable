@@ -3,7 +3,7 @@ import React, {useContext, useState} from 'react'
 import {useHttp} from '../../../hooks/http.hooks'
 import {useToast} from '../../../hooks/toast.hooks'
 import s from './BlockContentItem.module.css'
-import {AuthContext} from "../../../context/auth.contexnt";
+import {AuthContext} from "../../../context/AuthContext";
 import GD from "../../../../GD";
 
 
@@ -38,7 +38,7 @@ const BlockContentItem = (props) => {
 
         } else if (e.target.dataset.info === 'register') {
             user = {...user, email: input.email, teacher: input.teacher, role}
-            const res = await request('https://classtable.herokuapp.com/api/auth/register', 'POST', user)
+            const res = await request(`${state.SERVER.url}/api/auth/register`, 'POST', user)
             setToast(res)
         }
     }

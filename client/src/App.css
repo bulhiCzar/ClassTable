@@ -13,8 +13,27 @@
     /*margin: 0 auto;*/
     display: flex;
     justify-content: center;
+    position: relative;
+    /*min-width: 350px;*/
 
 }
+
+.progressLine{
+    position: absolute;
+    /*top: 0;*/
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.progressLine > .MuiLinearProgress-colorPrimary{
+    background-color: var(--cl-dark);
+}
+
+.progressLine > .MuiLinearProgress-colorPrimary > .MuiLinearProgress-barColorPrimary{
+    background-color: var(--cl-darkW);
+}
+
+
 .MuiFilledInput-root.Mui-focused{
     background-color: transparent !important;
 }

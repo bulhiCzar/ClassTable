@@ -1,7 +1,7 @@
 .root{
     /*background-color: #41f321;*/
     margin-bottom: 1rem;
-
+    position: relative;
 }
 .appBar{
     background-color: var(--cl-dark) !important;
