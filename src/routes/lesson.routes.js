@@ -10,6 +10,53 @@ const auth = require('../middleware/auth.middleware')
 
 const route = Router()
 
+route.delete(
+    '/:id',
+    auth,
+    async (req, res)=>{
+        try {
+            const id = req.params.id
+            const login = req.user.login
+
+            let lesson = await Lesson.findById(id)
+            const user = await User.findOne({login})
+
+            if (!lesson.checkPay && !user.role) return res.status(401).json({m: 'Сначала оплатиле урок', type: GD.TYPE.warning,})
+
+            // if (!lesson.checkPay) return res.status(401).json({m: 'Урок не оплачен', type: GD.TYPE.warning,})
+            // console.log(user)
+            console.log(lesson._id)
+
+            const newLessons = user.lessons.filter(item => {
+                return item.toString() !== lesson._id.toString()
+            })
+
+            let condition
+            // if (login === lesson.teacher){
+            //     condition = await User.findOne()
+            // }
+
+
+            if (user.login === lesson.teacher){
+                condition = await User.findOne({login: lesson.student})
+            } else if (user.login === lesson.student){
+                condition = await User.findOne({login: lesson.teacher})
+            }
+
+            user.lessons = newLessons
+            condition.lessons = newLessons
+
+            await Lesson.findByIdAndDelete(lesson._id)
+            await user.save()
+            await condition.save()
+
+
+            res.status(200).json({m: 'Урок удален', type: GD.TYPE.success,})
+        }catch (e) {
+            res.status(403).json({m: 'что-то сломалось', type: GD.TYPE.error,})
+        }
+    }
+)
 
 route.post(
     '/add',

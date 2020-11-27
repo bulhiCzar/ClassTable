@@ -4,6 +4,7 @@ export const useHttp = () => {
     const [loading, setLoading] = useState(false)
     const request = useCallback(async (url, method = 'GET', body, headers={} ) => {
         try {
+
             body = JSON.stringify(body)
             headers['Content-Type'] = 'application/json'
             // headers = 'application/json'
@@ -15,6 +16,7 @@ export const useHttp = () => {
             // if (!response.ok) {
             //     return data
             // }
+            // console.log(token)
 
             setLoading(false)
             return data

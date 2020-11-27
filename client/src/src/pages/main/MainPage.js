@@ -18,9 +18,9 @@ const MainPage = (callback, deps) => {
     const [week, setWeek] = useState({firstDay: '', lastDay: ''})
     const {request} = useHttp()
     const [items, setItems] = useState([])
+    const [toWeekLesson, setToWeekLesson] = useState(true)
     const {state} = GD()
-
-
+    // let ToWeekLesson = true
 
 
     const dates = useMemo((current = new Date()) => {
@@ -67,36 +67,39 @@ const MainPage = (callback, deps) => {
     }
 
 
-
-
     const setLessonsWeek =
-        lessons.map((item, idx,) => {
+
+        lessons.sort((a, b) => a.dateCarrying - b.dateCarrying).map((item, idx,) => {
             // if (!item.checkPay){return }
-            // console.log(item)
+            console.log(item)
             const {date, time} = ParsDate(item.dateCarrying)
 
-            const day = date.slice(0,2)
-            if ((day < week.firstDay) || (day > week.lastDay) ){return }
+            const day = date.slice(0, 2)
+            if ((day < week.firstDay) || (day > week.lastDay)) {
+                // ToWeekLesson = false
+                return
+            }
 
             const topic = htmlDecode(item.topic)
             return (
-                <div className={s.card} key={idx}>
+                <div className={s.card} key={item._id}>
                     <div className={s.cardHeader}>
                         <div className={s.cardDateDay}>{date}</div>
                         <div className={s.cardDateTime}>{time}</div>
                     </div>
                     <div className={s.cardBody}>
-                    {role && <div className={s.cardDateRole}>{item.student}</div>}
-                    <div className={s.cardMultiplier}>На {item.multiplier} час</div>
-                    <div className={s.topic}>{topic}</div>
+                        {role && <div className={s.cardDateRole}>{item.student}</div>}
+                        <div className={s.cardMultiplier}>На {item.multiplier} час</div>
+                        <div className={s.topic}>{topic}</div>
                     </div>
                 </div>
             )
         })
 
-    // useEffect(()=>{
-    //     setLessonsWeek()
-    // }, [setLessonsWeek])
+
+    useEffect(() => {
+        console.log(setLessonsWeek)
+    })
 
 
     return (
@@ -120,15 +123,21 @@ const MainPage = (callback, deps) => {
                                 <div className={s.mainDateTitle}>На этой недели:</div>
                                 <div className={s.mainDateBlock}>
                                     <div className={s.mainDateNumber}>{week.firstDay}</div>
-                                    <span className={s.line}></span>
+                                    <span className={s.line}/>
                                     <div className={s.mainDateNumber}>{week.lastDay}</div>
                                 </div>
                             </div>
-                            <div className={s.mainCards}>
-                                {
-                                    setLessonsWeek || 'У вас нет занятий'
-                                }
-                            </div>
+                            {
+                                setLessonsWeek.length > 0 ?
+                                    <div className={s.mainCards}>
+                                        {setLessonsWeek}
+                                    </div>
+                                    :
+                                    <div className={s.nonLessons}>
+                                        У вас нет занятий на этой недели
+                                    </div>
+
+                            }
                         </div>
                     </div>
                 </div>

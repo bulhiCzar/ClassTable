@@ -3,7 +3,7 @@ import {useHttp} from "./http.hooks"
 import GD from "../../GD"
 
 
-export const useData = ({role, name, token})=> {
+export const useData = ({role, name, token}) => {
     const {request} = useHttp()
     const {state} = GD()
 
@@ -19,31 +19,27 @@ export const useData = ({role, name, token})=> {
     // }
 
 
-
-    const checkToken = useCallback(async ()=>{
-        if (!token){return}
+    const checkToken = useCallback(async () => {
+        if (!token) {
+            return
+        }
         setLoading(false)
         const headers = {authorization: `Bearer ${token}`}
         const res = await request(`${state.SERVER.url}/api/lesson/all`, 'POST', {}, headers)
         setLessons(res.lessons)
 
-        // setName(res.login)
-        // setRole(res.role)
-        // setTimeout(()=>{
-        //     setLoading(true)
-        //     console.log(res)
-        // }, 300000)
 
         setLoading(true)
-        console.log(res)
-    },[ request, state.SERVER.url, token, setLoading, setLessons])
+        // console.log(res)
+    }, [request, state.SERVER.url, token, setLoading, setLessons])
 
-    useEffect(()=>{
+    useEffect(() => {
         checkToken()
     }, [checkToken])
 
+    const reload = useCallback(checkToken, [checkToken])
 
 
-    return {lessons, students, teacher, loading}
+    return {lessons, students, teacher, loading, reload}
 }
 

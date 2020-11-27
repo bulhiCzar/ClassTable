@@ -32,6 +32,7 @@
 }
 
 .main{
+    color: var(--cl-white);
     overflow: hidden;
     transition: height .5s, opacity 2s ;
 }
@@ -54,4 +55,21 @@
 .role{
     width: 100%;
     max-width: 40px;
+}
+
+.mainCards {
+    /*background-color: #41f321;*/
+    margin: 0 18px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+}
+.nonLessons{
+    height: 15vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-size: 16px;
+    opacity: .5;
 }

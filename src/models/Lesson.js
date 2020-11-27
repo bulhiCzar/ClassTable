@@ -10,7 +10,8 @@ const lesson = new Schema({
     owner: {type: String}, // создатель урока
     comment: {type: String}, // коментарий к заказу
     topic: {type: String}, // тема занятия
-    multiplier: {type: Number, default: 1}
+    multiplier: {type: Number, default: 1}, // продолжительность
+    isDisable: {type: Boolean, default: false}, // активность урока
 })
 
 module.exports = model('Lesson', lesson)

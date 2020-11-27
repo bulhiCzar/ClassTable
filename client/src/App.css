@@ -14,8 +14,11 @@
     display: flex;
     justify-content: center;
     position: relative;
-    /*min-width: 350px;*/
+    margin: 0 20px;
 
+}
+.wrapper_pages:nth-child(1){
+    margin: 0 20px;
 }
 
 .progressLine{

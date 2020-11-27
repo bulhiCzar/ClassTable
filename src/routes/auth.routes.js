@@ -136,7 +136,7 @@ route.post(
 
             const tokenAuth = await jwt.sign({login: condition.login}, GD.JWT.secretKey, {expiresIn: '30d' })
 
-            condition.sessions.push({date: Date.now(), ip: 'ip'})
+            // condition.sessions.push({date: Date.now(), ip: 'ip'})
 
             var http = require('http')
             http.get({'host': 'api.ipify.org', 'port': 80, 'path': '/'}, function(resp) {
@@ -147,7 +147,7 @@ route.post(
 
             // доделать айпи к ссеиям
 
-            condition.save()
+            // condition.save()
 
             res.status(200).json({m: 'Успешный вход', type: GD.TYPE.success, tokenAuth, name: condition.login, role: condition.role})
         } catch (e) {

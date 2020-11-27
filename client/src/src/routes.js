@@ -9,7 +9,7 @@ export const useRotes = (isAuth)=>{
     if(isAuth){
         return(
             <Switch>
-                <Route path='/' exact>
+                <Route path='/main' exact>
                     <MainPage/>
                 </Route>
                 <Route path='/add' exact>
@@ -18,7 +18,7 @@ export const useRotes = (isAuth)=>{
                 <Route path='/lessons' exact>
                     <LessonsPage/>
                 </Route>
-                <Redirect to='/' />
+                <Redirect to='/main' />
             </Switch>
         )
     }

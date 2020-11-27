@@ -12,6 +12,7 @@ import Button from "@material-ui/core/Button";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import {AuthContext} from "../../context/AuthContext";
 import {useToast} from "../../hooks/toast.hooks";
+import {DataContext} from "../../context/DataContext";
 
 
 //bulhi
@@ -28,6 +29,7 @@ const timeSelect = [
 
 const AddPage = () => {
     const auth = useContext(AuthContext)
+    const {reload} = useContext(DataContext)
     const [time, setTime] = useState('')
     const [date, setDate] = useState('')
     const [multiplier, setMultiplier] = useState(1)
@@ -82,7 +84,8 @@ const AddPage = () => {
         console.log(Date.parse(e._d))
         console.log(e._d)
         const date = e._d.toJSON().slice(0, 10).replace(':', '-').split('-').reverse().join('.').slice(0, 5)
-        const time = e._d.toJSON().slice(11, 16)
+        // const time = e._d.toJSON().slice(11, 16)
+        const time = e._d.toString().slice(16, 21)
         setDateCarrying(Date.parse(e._d))
         setTime(time)
         setDate(date)
@@ -109,6 +112,7 @@ const AddPage = () => {
         const res = await request(`${state.SERVER.url}/api/lesson/add`, 'POST', billet, headers)
         // console.log(res)
         setToast(res)
+        reload()
     }
 
 

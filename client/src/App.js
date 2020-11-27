@@ -18,7 +18,7 @@ import {useData} from "./src/hooks/data.hooks";
 function App() {
 
     const {login, logout, token, ready, name, role} = useAuth()
-    const {students, lessons, teacher, loading} = useData({role, name, token})
+    const {students, lessons, teacher, loading, reload} = useData({role, name, token})
     const isAuthenticated = !!token
     const routes = useRotes(isAuthenticated)
 
@@ -39,7 +39,7 @@ function App() {
                         {isAuthenticated && <HeaderPage loading={loading}/>}
 
 
-                        <DataContext.Provider value={{lessons, students, teacher}}>
+                        <DataContext.Provider value={{lessons, students, teacher, reload}}>
                             <div className="wrapper_pages">
                                 {isAuthenticated && <NavPage loading={loading}/>}
 
