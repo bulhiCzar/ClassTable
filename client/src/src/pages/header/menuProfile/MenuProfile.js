@@ -5,9 +5,12 @@ import {AccountCircle} from "@material-ui/icons";
 import {withStyles} from "@material-ui/styles";
 import {AuthContext} from "../../../context/AuthContext";
 import {useAuth} from "../../../hooks/auth.hooks";
+import {NavLink} from "react-router-dom";
+import {DataContext} from "../../../context/DataContext";
 
 const MenuProfile = () => {
     const {name, logout} = useContext(AuthContext)
+    // const {name} = useContext(DataContext)
 
 
     const [anchorEl, setAnchorEl] = useState(null);
@@ -93,7 +96,8 @@ const MenuProfile = () => {
                 open={open}
                 onClose={handleClose}
             >
-                <StyledMenuItem onClick={handleClose}>Profile</StyledMenuItem>
+                <NavLink className={s.link} to={name} ><StyledMenuItem onClick={handleClose}>Профиль</StyledMenuItem></NavLink>
+                {/*<NavLink className={s.link} to='/settings' ><StyledMenuItem onClick={handleClose}>Настройки</StyledMenuItem></NavLink>*/}
                 <StyledMenuItem onClick={handleLogout}>Выйти</StyledMenuItem>
             </Menu>
         </>

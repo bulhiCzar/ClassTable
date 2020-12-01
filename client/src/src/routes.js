@@ -4,6 +4,8 @@ import AuthPage from "./pages/auth/AuthPage";
 import AddPage from "./pages/add/AddPage";
 import LessonsPage from "./pages/lessons/LessonsPage";
 import MailPage from "./pages/mail/MailPage";
+import ProfilePage from "./pages/user/profile/ProfilePage";
+import SettingsPage from "./pages/user/settings/SettingsPage";
 
 export const useRotes = (isAuth)=>{
     if(isAuth){
@@ -17,6 +19,12 @@ export const useRotes = (isAuth)=>{
                 </Route>
                 <Route path='/lessons' exact>
                     <LessonsPage/>
+                </Route>
+                <Route path='/settings' exact>
+                    <SettingsPage/>
+                </Route>
+                <Route path='/:login'>
+                    <ProfilePage/>
                 </Route>
                 <Redirect to='/main' />
             </Switch>

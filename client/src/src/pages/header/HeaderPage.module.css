@@ -34,3 +34,7 @@
 .menu > div.MuiPaper-root{
     background-color: #41f321 !important;
 }
+
+.link{
+    color:rgb(242, 242, 242);
+}

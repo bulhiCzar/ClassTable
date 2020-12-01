@@ -4,20 +4,15 @@ const user = new Schema({
     email: {type: String, required: true, unique: true},
     login: {type: String, required: true, unique: true},
     password: {type: String, required: true},
-    role: {type: Boolean, default: false}, // true - teacher | false - student
-    lessons: [{
-        type: Types.ObjectId
-    }],
-    confirmationEmail: {type: Boolean, default: false},
-    token: {type: String},
-    sessions: [{
-        type: Object
-    }],
+    role: {type: Boolean, default: false},
     teacher: {type: String},
-    students: [{
-        type: String
-    }],
-    registered: {type: Number, default: Date.now()}
+    students: [{type: String}],
+    token: {type: String},
+    confirmationEmail: {type: Boolean, default: false},
+    registered: {type: Number, default: Date.now()},
+    lessons: [{type: Types.ObjectId}],
+    sessions: [{type: Object}],
+    theme: [{type: Object}],
 })
 
 

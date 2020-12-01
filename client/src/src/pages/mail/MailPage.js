@@ -8,13 +8,10 @@ import {useToast} from "../../hooks/toast.hooks";
 
 
 const MailPage = () => {
-    let i
-
     const {state} = GD()
     const {request} = useHttp()
     const id = useParams().id
     const [status, setStatus] = useState(false)
-    const [resp, setResp] = useState()
     const {setToast} = useToast()
 
     const cb = useCallback(async ()=>{

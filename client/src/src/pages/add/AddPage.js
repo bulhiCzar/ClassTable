@@ -14,13 +14,6 @@ import {AuthContext} from "../../context/AuthContext";
 import {useToast} from "../../hooks/toast.hooks";
 import {DataContext} from "../../context/DataContext";
 
-
-//bulhi
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbiI6ImJ1bGhpIiwiaWF0IjoxNjA1NDY3MTM0LCJleHAiOjE2MDgwNTkxMzR9.aMWl6jM5p7sZNynvBg-iueGGQ4OVyygSDXLwsdamP_U'
-//bulhiST
-// const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbiI6ImJ1bGhpU1QiLCJpYXQiOjE2MDU0NjcyMDEsImV4cCI6MTYwODA1OTIwMX0.BdjgwalWD5pF0tSh3OFksDSWiS3wjYTKJXjXiBdw_MY'
-const headers = {authorization: `Bearer ${token}`}
-
 const timeSelect = [
     {value: 1, label: '1 час'},
     {value: 1.5, label: '1.5 часа'},
@@ -98,7 +91,6 @@ const AddPage = () => {
     }
 
     const pressAdd = async ()=>{
-        console.log(11)
         const billet = {
             student,
             teacher,

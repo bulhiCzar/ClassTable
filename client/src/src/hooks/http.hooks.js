@@ -2,7 +2,7 @@ import {useCallback, useState} from "react";
 
 export const useHttp = () => {
     const [loading, setLoading] = useState(false)
-    const request = useCallback(async (url, method = 'GET', body, headers={} ) => {
+    const request = useCallback(async (url, method, body, headers={} ) => {
         try {
 
             body = JSON.stringify(body)

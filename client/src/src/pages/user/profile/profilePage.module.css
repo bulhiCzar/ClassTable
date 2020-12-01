@@ -1,0 +1,53 @@
+.loading{
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cl-white);
+}
+.loading > div{
+    color: var(--cl-white);
+    width: 80px !important;
+    height: 80px !important;
+}
+.wrapper {
+    min-width: 350px;
+    width: 1000px;
+    height: 100%;
+    background-color: var(--cl-dark);
+}
+
+.content {
+    position: relative;
+    width: 100%;
+    /*padding: 15px;*/
+    min-height: 20vh;
+    padding: 32px;
+    color: var(--cl-white);
+}
+
+.blockTitle {
+    display: flex;
+    justify-content: space-between;
+    font-size: 26px;
+    width: 100%;
+    font-weight: 700;
+    min-height: 60px;
+}
+
+.titleText {
+    padding: 16px 0;
+}
+
+.blockContent {
+
+}
+
+.main {
+    overflow: hidden;
+    transition: height .5s, opacity 2s;
+}

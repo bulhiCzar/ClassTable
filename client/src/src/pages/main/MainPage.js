@@ -15,7 +15,7 @@ const MainPage = (callback, deps) => {
 
     // console.log(htmlDecode)
 
-    const [week, setWeek] = useState({firstDay: '', lastDay: ''})
+    const [week, setWeek] = useState({firstDay: '', lastDay: '', firstDayN: '', lastDayN: ''})
     const {request} = useHttp()
     const [items, setItems] = useState([])
     const [toWeekLesson, setToWeekLesson] = useState(true)
@@ -49,9 +49,10 @@ const MainPage = (callback, deps) => {
         setWeek({
             // first: dates[0].toUTCString().slice(),
             firstDay: dates[0].toString().slice(8, 11).replaceAt(0, '', 0),
-            lastDay: dates[6].toString().slice(8, 11).replaceAt(0, '', 0)
+            lastDay: dates[6].toString().slice(8, 11).replaceAt(0, '', 0),
+            firstDayN: new Date(dates[0]),
+            lastDayN: new Date(dates[6])
         })
-        // console.log(dates)
     }, [setWeek, dates])
 
     useEffect(() => {
@@ -61,22 +62,19 @@ const MainPage = (callback, deps) => {
     function getMonday(d) {
         d = new Date(d);
         var day = d.getDay(),
-            diff = d.getDate() - day + (day === 0 ? -6 : 1); // adjust when day is sunday
+            diff = d.getDate() - day + (day === 0 ? -6 : 6); // adjust when day is sunday
         // console.log(d.setDate(diff))
         return new Date(d.setDate(diff));
     }
 
 
+
     const setLessonsWeek =
-
         lessons.sort((a, b) => a.dateCarrying - b.dateCarrying).map((item, idx,) => {
-            // if (!item.checkPay){return }
-            console.log(item)
             const {date, time} = ParsDate(item.dateCarrying)
+            const day = new Date(item.dateCarrying)
 
-            const day = date.slice(0, 2)
-            if ((day < week.firstDay) || (day > week.lastDay)) {
-                // ToWeekLesson = false
+            if ((day < week.firstDayN) || (day > week.lastDayN)) {
                 return
             }
 
@@ -97,11 +95,6 @@ const MainPage = (callback, deps) => {
         })
 
 
-    useEffect(() => {
-        console.log(setLessonsWeek)
-    })
-
-
     return (
         <div className={s.wrapper}>
             <div className={s.content}>
@@ -112,12 +105,6 @@ const MainPage = (callback, deps) => {
                 </div>
                 <div className={s.blockContent}>
                     <div className={`${s.main}`}>
-                        {/*<div*/}
-                        {/*onClick={()=>{*/}
-                        {/*    console.log(week)*/}
-                        {/*    console.log()*/}
-                        {/*}}*/}
-                        {/*>```1sasad1```</div>*/}
                         <div className={s.mainItem}>
                             <div className={s.mainDate}>
                                 <div className={s.mainDateTitle}>На этой недели:</div>
