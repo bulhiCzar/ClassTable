@@ -27,7 +27,7 @@ app.use('/api/user', require('./src/routes/user.routes'))
 
 
 // app.use(express.static('static'))
-app.use('/', express.static('client/build'))
+app.use('/', express.static('client/build/index.html'))
 
 const start = async () => {
     try {
