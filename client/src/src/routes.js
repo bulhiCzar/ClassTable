@@ -23,7 +23,7 @@ export const useRotes = (isAuth)=>{
                 <Route path='/settings' exact>
                     <SettingsPage/>
                 </Route>
-                <Route path='/user/:login'>
+                <Route path='/:login'>
                     <ProfilePage/>
                 </Route>
                 <Redirect to='/main' />

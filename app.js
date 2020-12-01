@@ -31,36 +31,6 @@ app.use('/api/user', require('./src/routes/user.routes'))
 
 
 app.use(express.static('client/build'))
-app.get('/mail1/:id', async (req, res) => {
-        try {
-            const id = req.params.id
-            const condition = await User.findOne({token: id}, (err, data) => {
-                return err
-            })
-            if (condition === null) {
-                res.status(403).json({m: 'Ничего не нашлось по этому токену', type: GD.TYPE.warning})
-                return
-            }
-            if (!condition) {
-                res.status(403).json({m: 'Ничего не нашлось по этому токену', type: GD.TYPE.warning})
-                return
-            }
-            if (condition.token !== id) {
-                return res.status(403).json({m: 'Токен не совпал', type: GD.TYPE.warning})
-            }
-
-            condition.token = undefined
-            condition.confirmationEmail = true
-
-
-            await condition.save()
-
-            res.status(200).json({m: 'Почта подтверждена', type: GD.TYPE.success})
-        } catch (e) {
-            res.status(403).json({m: 'Ошибка какая-то, повторите позже', type: GD.TYPE.error})
-        }
-    }
-)
 app.use('/*', express.static('client/build/index.html'))
 
 const start = async () => {
