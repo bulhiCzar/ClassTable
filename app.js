@@ -31,7 +31,7 @@ app.use('/api/user', require('./src/routes/user.routes'))
 
 
 app.use(express.static('client/build'))
-app.get('/mail/:id', async (req, res) => {
+app.get('/mail1/:id', async (req, res) => {
         try {
             const id = req.params.id
             const condition = await User.findOne({token: id}, (err, data) => {
@@ -61,7 +61,7 @@ app.get('/mail/:id', async (req, res) => {
         }
     }
 )
-app.use('/', express.static('client/build/index.html'))
+app.use('/*', express.static('client/build/index.html'))
 
 const start = async () => {
     try {
