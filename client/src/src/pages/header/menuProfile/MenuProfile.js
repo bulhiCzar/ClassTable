@@ -97,7 +97,7 @@ const MenuProfile = () => {
                 onClose={handleClose}
             >
                 <NavLink className={s.link} to={name} ><StyledMenuItem onClick={handleClose}>Профиль</StyledMenuItem></NavLink>
-                <NavLink className={s.link} to='/settings' ><StyledMenuItem onClick={handleClose}>Настройки</StyledMenuItem></NavLink>
+                {/*<NavLink className={s.link} to='/settings' ><StyledMenuItem onClick={handleClose}>Настройки</StyledMenuItem></NavLink>*/}
                 <StyledMenuItem onClick={handleLogout}>Выйти</StyledMenuItem>
             </Menu>
         </>
