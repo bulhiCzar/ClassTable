@@ -18,7 +18,7 @@ const DB = async () => {
         } else {
             connectInfo.dbName = 'production'
         }
-        
+
         connectInfo.user = GS.MDB.user
         connectInfo.pass = GS.MDB.pass
         const connected = await mongoose.connect(GS.MDB.link, connectInfo)
