@@ -9,18 +9,13 @@ const DB = async () => {
     }
 
     if (GS.MDB.ifOneLink && !process.env.NODE_ENV) {
+        console.log('run dev')
         const connected = await mongoose.connect(GS.MDB.oneLink, connectInfo)
     } else {
         console.log('run product')
-        // if (process.env.NODE_ENV === 'production') {
-        //     connectInfo.dbName = GS.MDB.dbName
-        // } else {
-            connectInfo.dbName = 'production'
-        // }
-
+        connectInfo.dbName = 'production'
         connectInfo.user = GS.MDB.user
         connectInfo.pass = GS.MDB.pass
-        console.log(connectInfo)
         const connected = await mongoose.connect(GS.MDB.link, connectInfo)
     }
 }
