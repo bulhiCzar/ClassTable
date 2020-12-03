@@ -9,7 +9,7 @@ const globalData = {
     // conect mongodb
     MDB: {
         oneLink: 'mongodb+srv://ClassTable:741236@testing.eb8wd.mongodb.net/firstInit', // oneLink
-        ifOneLink: false, // true if you use oneLink else false || if \/(true) or /\(false)
+        ifOneLink: true, // true if you use oneLink else false || if \/(false) or /\(true)
         link: 'mongodb+srv://testing.eb8wd.mongodb.net', // link 
         dbName: 'firstInit', // name db
         user: 'ClassTable',  // user
