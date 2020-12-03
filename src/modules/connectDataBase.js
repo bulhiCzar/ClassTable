@@ -20,6 +20,7 @@ const DB = async () => {
 
         connectInfo.user = GS.MDB.user
         connectInfo.pass = GS.MDB.pass
+        console.log(connectInfo)
         const connected = await mongoose.connect(GS.MDB.link, connectInfo)
     }
 }
