@@ -7,9 +7,10 @@ const DB = async () => {
         useCreateIndex: true,
         useUnifiedTopology: true,
     }
-    if (GS.MDB.ifOneLink || !(process.env === 'production')) {
+    if (!GS.MDB.ifOneLink && !(process.env === 'production')) {
         const connected = await mongoose.connect(GS.MDB.oneLink, connectInfo)
     } else {
+        console.log('run product')
         if (process.env === 'production') {
             connectInfo.dbName = GS.MDB.dbName
         } else {
