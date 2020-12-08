@@ -1,0 +1,4 @@
+export const ADD_LESSON = 'LES/ADD_LESSON'
+export const FETCH_LESSONS = 'LES/FETCH_LESSONS'
+export const HIDE_LOADER = 'APP/HIDE_LOADER'
+export const SHOW_LOADER = 'APP/SHOW_LOADER'

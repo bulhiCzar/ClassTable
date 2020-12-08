@@ -1,18 +1,16 @@
 import {ToastProvider} from 'react-toast-notifications'
-
 import NavPage from "./src/pages/nav/NavPage"
 import {useAuth} from "./src/hooks/auth.hooks"
 import {useRotes} from "./src/routes"
-import './App.css'
 import {AuthContext} from "./src/context/AuthContext";
 import {BrowserRouter} from "react-router-dom";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import HeaderPage from "./src/pages/header/HeaderPage";
 import {useHttp} from "./src/hooks/http.hooks";
 import GD from "./GD";
-import {useCallback, useEffect} from "react";
 import {DataContext} from "./src/context/DataContext";
 import {useData} from "./src/hooks/data.hooks";
+import './App.css'
 
 
 function App() {

@@ -13,6 +13,8 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import {AuthContext} from "../../context/AuthContext";
 import {useToast} from "../../hooks/toast.hooks";
 import {DataContext} from "../../context/DataContext";
+import {connect} from "react-redux";
+import {addLesson} from "../../../redux/actions";
 
 const timeSelect = [
     {value: 1, label: '1 час'},
@@ -20,7 +22,7 @@ const timeSelect = [
     {value: 2, label: '2 часа'},
 ]
 
-const AddPage = () => {
+const AddPage = (props) => {
     const auth = useContext(AuthContext)
     const {reload} = useContext(DataContext)
     const [time, setTime] = useState('')
@@ -74,8 +76,6 @@ const AddPage = () => {
             setTime(null)
             return
         }
-        console.log(Date.parse(e._d))
-        console.log(e._d)
         const date = e._d.toJSON().slice(0, 10).replace(':', '-').split('-').reverse().join('.').slice(0, 5)
         // const time = e._d.toJSON().slice(11, 16)
         const time = e._d.toString().slice(16, 21)
@@ -91,20 +91,25 @@ const AddPage = () => {
     }
 
     const pressAdd = async ()=>{
-        const billet = {
+        if (!dateCarrying || !theme || !student || !teacher){
+            setToast({m: "Заполните все поля", type: "warning"})
+            return
+        }
+        const lesson = {
             student,
             teacher,
             price,
-            date: dateCarrying,
+            dateCarrying,
             comment: input,
             topic: theme,
             multiplier
         }
-
-        const res = await request(`${state.SERVER.url}/api/lesson/add`, 'POST', billet, headers)
-        // console.log(res)
+        const res = await request(`${state.SERVER.url}/api/lesson/add`, 'POST', lesson, headers)
         setToast(res)
-        reload()
+        if (res.type === 'success') {
+            props.addLesson(lesson)
+        }
+        // reload()
     }
 
 
@@ -276,4 +281,4 @@ const AddPage = () => {
     )
 }
 
-export default AddPage
+export default connect(null, {addLesson})(AddPage)

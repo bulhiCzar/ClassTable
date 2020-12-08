@@ -1,23 +1,11 @@
 import s from './LessonsPage.module.css'
-import {useHttp} from "../../hooks/http.hooks";
-import {useCallback, useContext, useEffect, useMemo, useState} from "react";
-import GD from "../../../GD";
-import {AuthContext} from "../../context/AuthContext";
-import LinearProgress from "@material-ui/core/LinearProgress";
-import {DataContext} from "../../context/DataContext";
-import Functions from "../../Functions";
 import ItemLessons from "./ItemLessons/ItemLessons";
+import {connect} from "react-redux";
 
 
-const LessonsPage = () => {
-    // const {token, role} = useContext(AuthContext)
-    const {lessons} = useContext(DataContext)
-    // const {request, loading} = useHttp()
-    // const [items, setItems] = useState([])
-    // const {htmlDecode, ParsDate} = Functions
-    // const {state} = GD()
+const LessonsPage = ({lessons}) => {
+    // const {lessons} = useContext(DataContext)
 
-    // console.log(lessons)
     const setLessonsWeek =
         lessons.sort((a,b)=>a.dateCarrying - b.dateCarrying).map((item, idx,) => {
             return <ItemLessons item={item} idx={idx} key={item._id + idx}/>
@@ -50,5 +38,10 @@ const LessonsPage = () => {
         </div>
     )
 }
+const mapStateToProps = state =>{
+    return{
+        lessons: state.lessons.lessons
+    }
+}
 
-export default LessonsPage
+export default connect(mapStateToProps, null)(LessonsPage)

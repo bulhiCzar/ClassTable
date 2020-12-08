@@ -161,7 +161,7 @@ const DataTime = ({changedTimes, title}) => {
                             onChange={handleClearedDateChange}
                             // helperText="Clear Initial State"
                             ampm={false}
-                            format="DD.mm.yyyy HH:mm"
+                            format="DD.MM.yyyy HH:mm"
                             // variant="inline"
                             hideTabs="true"
                             disablePast="true"

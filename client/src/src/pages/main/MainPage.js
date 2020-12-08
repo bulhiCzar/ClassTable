@@ -67,7 +67,7 @@ const MainPage = (callback, deps) => {
         return new Date(d.setDate(diff));
     }
 
-
+    let arrless = []
 
     const setLessonsWeek =
         lessons.sort((a, b) => a.dateCarrying - b.dateCarrying).map((item, idx,) => {
@@ -92,7 +92,7 @@ const MainPage = (callback, deps) => {
                     </div>
                 </div>
             )
-        })
+        }).filter(e=>e)
 
 
     return (
