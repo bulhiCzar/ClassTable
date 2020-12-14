@@ -6,14 +6,18 @@ import {useHttp} from "../../hooks/http.hooks";
 import GD from "../../../GD";
 import {DataContext} from "../../context/DataContext"
 import Functions from '../../Functions'
+import {connect, useDispatch} from "react-redux";
 
 
-const MainPage = (callback, deps) => {
+const MainPage = ({lessons}) => {
     const {token, role} = useContext(AuthContext)
-    const {lessons} = useContext(DataContext)
+    // const {lessons} = useContext(DataContext)
     const {htmlDecode, ParsDate} = Functions
 
-    // console.log(htmlDecode)
+    const dispatch = useDispatch()
+
+
+
 
     const [week, setWeek] = useState({firstDay: '', lastDay: '', firstDayN: '', lastDayN: ''})
     const {request} = useHttp()
@@ -133,4 +137,10 @@ const MainPage = (callback, deps) => {
     )
 }
 
-export default MainPage
+const mapStateToProps = state =>{
+    return{
+        lessons: state.lessons.lessons
+    }
+}
+
+export default connect(mapStateToProps)(MainPage)

@@ -1,6 +1,9 @@
 import {useCallback, useEffect, useMemo, useState} from "react"
 import {useHttp} from "./http.hooks"
 import GD from "../../GD"
+import {useDispatch} from "react-redux";
+import {FETCH_LESSONS} from "../../redux/types";
+import {fetchLesson} from "../../redux/actions";
 
 
 export const useData = ({role, name, token}) => {
@@ -12,12 +15,7 @@ export const useData = ({role, name, token}) => {
     const [teacher, setTeacher] = useState('')
     const [loading, setLoading] = useState(null)
 
-    //
-    // if (!(!!role || name)){
-    //     // let lessons, students, teacher
-    //     return {lessons, students, teacher}
-    // }
-
+    const dispatch = useDispatch()
 
     const checkToken = useCallback(async () => {
         if (!token) {
@@ -26,8 +24,8 @@ export const useData = ({role, name, token}) => {
         setLoading(false)
         const headers = {authorization: `Bearer ${token}`}
         const res = await request(`${state.SERVER.url}/api/lesson/all`, 'POST', {}, headers)
-        setLessons(res.lessons)
-
+        // setLessons(res.lessons)
+        dispatch(fetchLesson(res.lessons))
 
         setLoading(true)
         // console.log(res)

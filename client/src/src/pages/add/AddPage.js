@@ -104,8 +104,10 @@ const AddPage = (props) => {
             topic: theme,
             multiplier
         }
+        console.log(lesson)
         const res = await request(`${state.SERVER.url}/api/lesson/add`, 'POST', lesson, headers)
         setToast(res)
+
         if (res.type === 'success') {
             props.addLesson(lesson)
         }

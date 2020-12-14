@@ -9,6 +9,8 @@ import InfoIcon from '@material-ui/icons/Info';
 import {useHttp} from "../../../hooks/http.hooks";
 import GD from "../../../../GD";
 import {DataContext} from "../../../context/DataContext";
+import {useDispatch} from "react-redux";
+import {delLesson} from "../../../../redux/actions";
 
 const ItemLessons = ({item, idx}) => {
     const {role, token} = useContext(AuthContext)
@@ -19,22 +21,27 @@ const ItemLessons = ({item, idx}) => {
     const {date, time} = ParsDate(item.dateCarrying)
     const day = date.slice(0, 2)
     const topic = htmlDecode(item.topic)
+    const dispatch = useDispatch()
 
     const [menu, setMenu] = useState(false)
     const [menuContext, setMenuContext] = useState(false)
 
     const id = item._id
 
-    const deleteLesson = async (el)=>{
+    const deleteLesson = async (el) => {
         const headers = {'Authorization': `Bearer ${token}`}
         const res = await request(`${state.SERVER.url}/api/lesson/${id}`, 'DELETE', {}, headers)
-        console.log(res)
-        reload()
+        if (res.type === 'success') {
+            dispatch(delLesson(id))
+        }
     }
 
     return (
-        <div className={s.card} key={idx}
-             onMouseEnter={()=>{setMenu(true)}} onMouseLeave={()=>{setMenu(false)}}
+        <div
+            className={s.card}
+            key={idx}
+            onMouseEnter={() => {setMenu(true)}}
+            onMouseLeave={() => {setMenu(false)}}
         >
             {/*{del ? <div className={s.delete}><HighlightOffIcon/></div> : ''}*/}
             <div className={s.cardHeader}>
@@ -51,9 +58,13 @@ const ItemLessons = ({item, idx}) => {
                 ${!menu ? s.one : s.two}
                 ${!(menu && menuContext) ? '' : s.menuContext}
                 `}
-                 onMouseEnter={()=>{setMenuContext(true)}}
-                 onMouseLeave={()=>{setMenuContext(false)}}
-                 >
+                 onMouseEnter={() => {
+                     setMenuContext(true)
+                 }}
+                 onMouseLeave={() => {
+                     setMenuContext(false)
+                 }}
+            >
                 <InfoIcon className={s.info}/>
                 <PaymentIcon className={s.payment}/>
                 <DeleteIcon className={s.delete} onClick={deleteLesson}/>

@@ -21,11 +21,8 @@ route.delete(
             let lesson = await Lesson.findById(id)
             const user = await User.findOne({login})
 
-            if (!lesson.checkPay && !user.role) return res.status(401).json({m: 'Сначала оплатиле урок', type: GD.TYPE.warning,})
+            if (!lesson.checkPay && !user.role) return res.status(401).json({m: 'Сначала оплатите урок', type: GD.TYPE.warning,})
 
-            // if (!lesson.checkPay) return res.status(401).json({m: 'Урок не оплачен', type: GD.TYPE.warning,})
-            // console.log(user)
-            console.log(lesson._id)
 
             const newLessons = user.lessons.filter(item => {
                 return item.toString() !== lesson._id.toString()
@@ -66,7 +63,7 @@ route.post(
         check('teacher').isAlphanumeric(),
         check('topic').trim().rtrim().escape(),
         check('price').isNumeric(),
-        check('date').isNumeric(),
+        check('dateCarrying').isNumeric(),
         check('comment').trim().rtrim().escape(),
     ],
     async (req, res) => {
@@ -81,14 +78,14 @@ route.post(
             }
 
             const user = req.user
-            const {student, teacher, price, date, comment, topic, multiplier} = req.body
+            const {student, teacher, price, dateCarrying, comment, topic, multiplier} = req.body
 
             const lesson = new Lesson({
                 student,
                 teacher,
                 price,
                 checkPay: false,
-                dateCarrying: date,
+                dateCarrying,
                 owner: user.login,
                 comment,
                 topic,

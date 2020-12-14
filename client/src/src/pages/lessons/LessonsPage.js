@@ -6,6 +6,8 @@ import {connect} from "react-redux";
 const LessonsPage = ({lessons}) => {
     // const {lessons} = useContext(DataContext)
 
+
+
     const setLessonsWeek =
         lessons.sort((a,b)=>a.dateCarrying - b.dateCarrying).map((item, idx,) => {
             return <ItemLessons item={item} idx={idx} key={item._id + idx}/>
