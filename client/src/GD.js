@@ -1,8 +1,8 @@
 const GD = ()=>{
     const state =  {
         SERVER: {
-            // url: 'https://classtable.herokuapp.com',
-            url: 'http://localhost:5000'
+            url: 'https://classtable.herokuapp.com',
+            // url: 'http://localhost:5000'
             // url: ''
         },
         LEARN: {
